@@ -1,0 +1,67 @@
+{ lib, pkgs, ... }:
+
+{
+  home.packages = with pkgs; [
+    adwaita-icon-theme
+    aerc
+    appimage-run
+    audacity
+    autoconf
+    automake
+    btrfs-progs
+    ccache
+    claude-code
+    cmake
+    diceware
+    difftastic
+    discord
+    dnsutils
+    docker-compose
+    eog
+    evince
+    ffmpeg
+    firefox
+    gcc
+    gcc-arm-embedded
+    gedit
+    gimp
+    gnumake
+    google-chrome
+    gparted
+    hsetroot
+    imagemagick
+    jujutsu
+    libreoffice
+    libtool
+    linuxHeaders
+    (lib.hiPrio llvmPackages.clang)
+    marker
+    mgba
+    nautilus
+    networkmanagerapplet
+    nodejs
+    ollama
+    pass
+    pavucontrol
+    pkg-config
+    pulseaudio
+    python3
+    qmk
+    qpdf
+    redshift
+    ruby
+    rustup
+    scrot
+    signal-desktop
+    sqlite
+    thunar
+    vlc
+    websocat
+    wlr-randr
+    xbindkeys
+    xmodmap
+    xrandr
+    xsecurelock
+    zola
+  ];
+}

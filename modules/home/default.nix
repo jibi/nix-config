@@ -8,12 +8,9 @@
     home.stateVersion = "25.05";
 
     imports = [
-      ./home/alacritty.nix
-      ./home/awesome
-      ./home/git.nix
-      ./home/ssh.nix
-      ./home/xconfig.nix
-      ./home/zsh.nix
+      ./zsh.nix
+      ./ssh.nix
+      ./git.nix
     ];
   };
 }

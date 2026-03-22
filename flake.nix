@@ -1,50 +1,61 @@
 {
-  description = "jibi's NixOS flake";
+  description = "jibi's nixos config";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    claude-code = {
-      url = "github:sadjow/claude-code-nix";
+    nix-secrets.url = "git+ssh://git@github.com/jibi/nix-secrets";
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-secrets.url = "git+ssh://git@github-nix-secrets/jibi/nix-secrets";
+    bisca = {
+      url = "git+ssh://git@github.com/jibi/bisca";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
       claude-code,
+      agenix,
+      bisca,
       nix-secrets,
       ...
     }:
-    {
-      nixosConfigurations.nixos-xps = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit claude-code; };
-
-        modules = [
-          ./hardware-configuration.nix
-
-          ./modules/system.nix
-          ./modules/boot.nix
-          ./modules/hardware.nix
-          ./modules/networking.nix
-          ./modules/xserver.nix
-          ./modules/packages.nix
-          ./modules/users.nix
-          ./modules/cuda.nix
-
-          home-manager.nixosModules.home-manager
-          ./modules/home.nix
-
-          nix-secrets.nixosModules.xps
-        ];
+    let
+      system = "x86_64-linux";
+      specialArgs = {
+        inherit
+          agenix
+          bisca
+          claude-code
+          home-manager
+          nix-secrets
+          ;
       };
+      mkHost =
+        name:
+        nixpkgs.lib.nixosSystem {
+          inherit system specialArgs;
+          modules = [ ./hosts/${name} ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        xps = mkHost "xps";
+        macbook = mkHost "macbook";
+      };
+
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
     };
 }

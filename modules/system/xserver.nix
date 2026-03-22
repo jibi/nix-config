@@ -46,12 +46,6 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-  services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
-    HandleLidSwitchDocked = "ignore";
-    HandleLidSwitchExternalPower = "suspend";
-  };
-
   programs.xss-lock.enable = true;
   programs.xss-lock.lockerCommand = "${pkgs.xsecurelock}/bin/xsecurelock";
 

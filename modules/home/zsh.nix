@@ -10,6 +10,7 @@
     };
     shellAliases = {
       vim = "nvim";
+      deploy-macbook = "nixos-rebuild switch --flake .#macbook --target-host home --build-host home --sudo";
     };
     sessionVariables = {
       EDITOR = "nvim";
