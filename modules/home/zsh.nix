@@ -15,6 +15,9 @@
     sessionVariables = {
       EDITOR = "nvim";
     };
+    envExtra = ''
+      export PATH="$HOME/bin:$PATH"
+    '';
     initContent = ''
       setopt NO_HUP
       function gs() {

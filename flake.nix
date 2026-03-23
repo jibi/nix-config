@@ -20,6 +20,10 @@
       url = "github:sadjow/claude-code-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mango = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -29,6 +33,7 @@
       claude-code,
       agenix,
       bisca,
+      mango,
       nix-secrets,
       ...
     }:
@@ -40,6 +45,7 @@
           bisca
           claude-code
           home-manager
+          mango
           nix-secrets
           ;
       };

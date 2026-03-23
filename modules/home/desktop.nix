@@ -7,6 +7,7 @@
       ./alacritty.nix
       ./xconfig.nix
       ./awesome
+      ./mango
     ];
   };
 }

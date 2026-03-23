@@ -1,0 +1,90 @@
+* {
+  font-family: "DejaVuSansM Nerd Font Mono";
+  font-size: 13px;
+}
+
+#waybar {
+  background: #101010;
+  color: #888888;
+}
+
+#tags,
+#taskbar,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#tray {
+  margin: 2px 4px;
+}
+
+#tags {
+  border-radius: 4px;
+  background: #202020;
+}
+
+#tags button {
+  padding: 0;
+  margin: 2px;
+  min-width: 20px;
+  min-height: 20px;
+  color: #888888;
+  border-radius: 4px;
+}
+
+#tags button:not(.occupied):not(.focused),
+#tags button:not(.occupied):not(.focused):hover {
+  font-size: 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  margin: -10000px;
+  color: transparent;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  opacity: 0;
+}
+
+#tags button.occupied {
+  background: #303030;
+  color: #888888;
+}
+
+#tags button.focused {
+  background: #dddddd;
+  color: #000000;
+}
+
+#tags button.urgent {
+  background: #000000;
+  color: #ffffff;
+}
+
+#tags button.occupied:hover {
+  background: #111111;
+  color: #ffffff;
+}
+
+#tags button.focused:hover {
+  background: #dddddd;
+  color: #000000;
+}
+
+#taskbar {
+  border-radius: 4px;
+  background: #202020;
+}
+
+#taskbar button {
+  padding: 0px 2px;
+}
+
+#battery.charging {
+  color: #49688e;
+}
+
+#battery.warning:not(.charging) {
+  color: #c3674a;
+}

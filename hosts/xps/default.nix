@@ -1,6 +1,7 @@
 {
   pkgs,
   home-manager,
+  mango,
   nix-secrets,
   ...
 }:
@@ -14,6 +15,7 @@
     ../../modules/system/hardware.nix
     ../../modules/system/cuda.nix
     ../../modules/system/desktop-packages.nix
+    mango.nixosModules.mango
 
     nix-secrets.nixosModules.xps
 

@@ -26,13 +26,15 @@
   ];
 
   programs = {
-    zsh.enableBashCompletion = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
       pinentryPackage = pkgs.pinentry-curses;
     };
+    mango.enable = true;
     virt-manager.enable = true;
+    zsh.enableBashCompletion = true;
+
   };
 
   virtualisation = {
@@ -68,4 +70,5 @@
   };
 
   security.rtkit.enable = true;
+  security.pam.services.waylock = { };
 }

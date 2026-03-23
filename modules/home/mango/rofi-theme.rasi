@@ -1,0 +1,69 @@
+* {
+    background:     #101010;
+    background-alt: #202020;
+    foreground:     #888888;
+    selected:       #dddddd;
+    selected-fg:    #000000;
+    border:         #303030;
+
+    font: "DejaVuSansM Nerd Font Mono 12";
+}
+
+window {
+    background-color: @background;
+    border:           0;
+    border-radius:    4px;
+    width:            600px;
+}
+
+mainbox {
+    background-color: transparent;
+}
+
+inputbar {
+    background-color: @background-alt;
+    border-radius:    4px;
+    padding:          8px;
+    margin:           8px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    background-color: transparent;
+    text-color:       @foreground;
+}
+
+entry {
+    background-color: transparent;
+    text-color:       @selected;
+    placeholder-color: @foreground;
+}
+
+listview {
+    background-color: transparent;
+    lines:            8;
+    padding:          0 8px 8px;
+}
+
+element {
+    background-color: transparent;
+    text-color:       @foreground;
+    padding:          6px 8px;
+    border-radius:    4px;
+}
+
+element selected {
+    background-color: @selected;
+    text-color:       @selected-fg;
+}
+
+element-icon {
+    background-color: transparent;
+    size:             20px;
+    margin:           0 8px 0 0;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+}

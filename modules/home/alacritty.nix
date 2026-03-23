@@ -36,7 +36,7 @@
         };
       };
       font = {
-        size = 13;
+        size = 14;
         normal.family = "DejaVuSansM Nerd Font Mono";
         bold = {
           family = "DejaVuSansM Nerd Font Mono";
