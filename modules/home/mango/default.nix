@@ -17,6 +17,19 @@
 
   home.packages = [ pkgs.waylock ];
 
+  xdg.desktopEntries.discord-wayland = {
+    categories = [
+      "Network"
+      "InstantMessaging"
+    ];
+    exec = "Discord --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    name = "Discord Wayland";
+    genericName = "All-in-one cross-platform voice and text chat for gamers";
+    icon = "discord";
+    mimeType = [ "x-scheme-handler/discord" ];
+    type = "Application";
+  };
+
   home.file."bin/lock" = {
     executable = true;
     text = ''
