@@ -1,6 +1,11 @@
-{ config, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
+lib.mkIf config.myconfig.cuda.enable {
   specialisation.cuda.configuration = {
     system.nixos.label = "nixos-cuda";
 

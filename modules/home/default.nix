@@ -1,17 +1,36 @@
-{ mango, ... }:
+{
+  config,
+  mango,
+  home-manager,
+  ...
+}:
 
 {
+  imports = [ home-manager.nixosModules.home-manager ];
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = { inherit mango; };
-
-  home-manager.users.jibi = {
-    home.stateVersion = "25.05";
-
-    imports = [
-      ./zsh.nix
-      ./ssh.nix
-      ./git.nix
-    ];
+  home-manager.extraSpecialArgs = {
+    inherit mango;
+    isDesktop = config.myconfig.desktop.enable;
   };
+
+  home-manager.users.jibi =
+    { isDesktop, lib, ... }:
+    {
+      home.stateVersion = "25.05";
+
+      imports = [
+        ./zsh.nix
+        ./ssh.nix
+      ]
+      ++ lib.optionals isDesktop [
+        ./alacritty.nix
+        ./awesome
+        ./git.nix
+        ./mango
+        ./packages.nix
+        ./xconfig.nix
+      ];
+    };
 }

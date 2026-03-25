@@ -1,28 +1,13 @@
-{
-  pkgs,
-  home-manager,
-  mango,
-  nix-secrets,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
+    ../default.nix
     ./hardware-configuration.nix
-
-    ../../modules/system
-    ../../modules/system/xserver.nix
-    ../../modules/system/hardware.nix
-    ../../modules/system/cuda.nix
-    ../../modules/system/desktop-packages.nix
-    mango.nixosModules.mango
-
-    nix-secrets.nixosModules.default
-
-    home-manager.nixosModules.home-manager
-    ../../modules/home
-    ../../modules/home/desktop.nix
   ];
+
+  myconfig.desktop.enable = true;
+  myconfig.cuda.enable = true;
 
   networking.hostName = "xps";
 

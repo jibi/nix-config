@@ -1,17 +1,9 @@
-{
-  config,
-  pkgs,
-  bisca,
-  nix-secrets,
-  ...
-}:
+{ config, pkgs, ... }:
 
 {
   imports = [
+    ../default.nix
     ./hardware-configuration.nix
-    ../../modules/system
-    bisca.nixosModules.default
-    nix-secrets.nixosModules.default
   ];
 
   networking.hostName = "macbook";

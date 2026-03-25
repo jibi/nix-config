@@ -2,13 +2,16 @@
 
 {
   home.packages = with pkgs; [
+    acpi
     adwaita-icon-theme
     aerc
     appimage-run
     audacity
     autoconf
     automake
+    brightnessctl
     btrfs-progs
+    cpufrequtils
     ccache
     claude-code
     cmake
@@ -30,7 +33,9 @@
     gparted
     hsetroot
     imagemagick
+    jmtpfs
     jujutsu
+    libmtp
     libreoffice
     libtool
     linuxHeaders
