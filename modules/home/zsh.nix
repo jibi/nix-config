@@ -11,6 +11,8 @@
     shellAliases = {
       vim = "nvim";
       deploy-macbook = "nixos-rebuild switch --flake .#macbook --target-host home --build-host home --sudo";
+      int_wl = "wlr-randr --output DP-2 --off --output eDP-1 --on";
+      ext_wl = "wlr-randr --output eDP-1 --off --output DP-2 --on";
     };
     sessionVariables = {
       EDITOR = "nvim";
