@@ -17,7 +17,7 @@
     ../../modules/system/desktop-packages.nix
     mango.nixosModules.mango
 
-    nix-secrets.nixosModules.xps
+    nix-secrets.nixosModules.default
 
     home-manager.nixosModules.home-manager
     ../../modules/home

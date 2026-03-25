@@ -1,10 +1,9 @@
-{ pkgs, agenix, ... }:
+{ pkgs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    agenix.packages.x86_64-linux.default
     curl
     jq
     neovim

@@ -3,9 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-secrets.url = "git+ssh://git@github.com/jibi/nix-secrets";
-    agenix = {
-      url = "github:ryantm/agenix";
+    nix-secrets = {
+      url = "git+ssh://git@github.com/jibi/nix-secrets";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -31,7 +30,6 @@
       nixpkgs,
       home-manager,
       claude-code,
-      agenix,
       bisca,
       mango,
       nix-secrets,
@@ -41,7 +39,6 @@
       system = "x86_64-linux";
       specialArgs = {
         inherit
-          agenix
           bisca
           claude-code
           home-manager

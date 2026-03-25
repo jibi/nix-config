@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  agenix,
   bisca,
   nix-secrets,
   ...
@@ -11,9 +10,8 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/system
-    agenix.nixosModules.default
     bisca.nixosModules.default
-    nix-secrets.nixosModules.macbook
+    nix-secrets.nixosModules.default
   ];
 
   networking.hostName = "macbook";
