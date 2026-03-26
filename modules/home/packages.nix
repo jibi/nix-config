@@ -24,6 +24,7 @@
     evince
     ffmpeg
     firefox
+    gammastep
     gcc
     gcc-arm-embedded
     gedit
