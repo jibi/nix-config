@@ -11,27 +11,32 @@ lib.mkIf config.myconfig.cuda.enable {
 
     nixpkgs.config.allowBroken = true;
 
-    hardware.graphics.enable = true;
-    hardware.nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = true;
-      nvidiaPersistenced = true;
-      open = false;
-    };
+    hardware = {
+      graphics.enable = true;
 
-    environment.systemPackages = with pkgs; [ cudatoolkit ];
+      nvidia = {
+        modesetting.enable = true;
+        powerManagement.enable = true;
+        nvidiaPersistenced = true;
+        open = false;
+
+        prime = {
+          offload.enable = true;
+
+          intelBusId = "PCI:0:2:0";
+          nvidiaBusId = "PCI:1:0:0";
+        };
+      };
+
+      nvidia-container-toolkit.enable = true;
+    };
 
     services.xserver.videoDrivers = [
       "modesetting"
       "nvidia"
     ];
 
-    hardware.nvidia.prime = {
-      offload.enable = true;
-
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
+    environment.systemPackages = with pkgs; [ cudatoolkit ];
 
     environment.sessionVariables =
       let
