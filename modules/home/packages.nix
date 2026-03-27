@@ -60,6 +60,7 @@
     scrot
     signal-desktop
     sqlite
+    swaybg
     thunar
     vlc
     websocat

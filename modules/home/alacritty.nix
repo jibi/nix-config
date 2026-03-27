@@ -47,6 +47,7 @@
           y = 0;
         };
       };
+      window.opacity = 0.6;
       scrolling = {
         history = 100000;
         multiplier = 10;
