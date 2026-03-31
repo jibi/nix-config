@@ -44,5 +44,8 @@
     ];
   };
 
+  home-manager.users.jibi.home.file.".ssh/id_rsa.pub".text =
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCNtyf3z93491mDKzb+0P+Yb942u99YS168AorgXxY2YgiRwLRmXDSJybTzq8BAcfxt2grokom7PVry9BK47OIhOFgxEn+C3TJ8By0o/IFn8j8SwYGV6x1I4ut1fKuXpgz3Z4FJmx8P1EaVy0Ii6P+qtxfM7Xlxgn9I9lPBoLkDSTlW4iZLVjQrMAKEF5PI/9jvoDpdwPBIxJ1V3OwgCn6qBNdH/Lt1pytvDLb3m14Pax5MRI78F8HhnoycDWTiQ4qXQCHktsL84NMWS2YDJqi/1w0ItV7YVqF7RY1q+M7N4NqzN1ZDWHh/5FlEuh/wnzmLsgZhj6ppCgnxHtK6KYh cardno:20_892_380\n";
+
   system.stateVersion = "25.05";
 }
