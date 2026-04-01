@@ -1,6 +1,6 @@
-{ ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.mkIf (pkgs.system == "x86_64-linux") {
   boot.loader = {
     systemd-boot = {
       enable = true;

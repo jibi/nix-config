@@ -42,7 +42,7 @@
     nix-ld.enable = true;
   };
 
-  virtualisation = {
+  virtualisation = lib.mkIf config.myconfig.virtualisation.enable {
     docker.enable = true;
     libvirtd = {
       enable = true;
@@ -51,7 +51,7 @@
   };
 
   services = {
-    fwupd.enable = true;
+    fwupd.enable = lib.mkIf config.myconfig.desktop.enable true;
     pcscd.enable = true;
   };
 }

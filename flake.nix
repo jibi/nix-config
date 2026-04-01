@@ -36,7 +36,6 @@
       ...
     }:
     let
-      system = "x86_64-linux";
       specialArgs = {
         inherit
           bisca
@@ -44,10 +43,14 @@
           home-manager
           mango
           nix-secrets
+          nixpkgs
           ;
       };
       mkHost =
-        name:
+        {
+          name,
+          system ? "x86_64-linux",
+        }:
         nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           modules = [ ./hosts/${name} ];
@@ -55,10 +58,14 @@
     in
     {
       nixosConfigurations = {
-        xps = mkHost "xps";
-        macbook = mkHost "macbook";
+        xps = mkHost { name = "xps"; };
+        macbook = mkHost { name = "macbook"; };
+        rpi = mkHost {
+          name = "rpi";
+          system = "aarch64-linux";
+        };
       };
 
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
 }

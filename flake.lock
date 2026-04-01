@@ -26,16 +26,17 @@
     },
     "bisca": {
       "inputs": {
+        "flake-parts": "flake-parts",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1773951396,
-        "narHash": "sha256-5omBDcSIO6Ox5R3WgNk1OMDvCZaWlky1HzPXWXdj7A0=",
+        "lastModified": 1774868771,
+        "narHash": "sha256-0VKvX7Mk2LKD7Jgq0v4rW1AEec8oL4u0C7631WU1u30=",
         "ref": "refs/heads/master",
-        "rev": "d19b2e3e4be7f1c66f8d94342edc1110f055a764",
-        "revCount": 222,
+        "rev": "25c173c824056332a9988fffa7d53750145f3809",
+        "revCount": 223,
         "type": "git",
         "url": "ssh://git@github.com/jibi/bisca"
       },
@@ -91,6 +92,24 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1772408722,
+        "narHash": "sha256-rHuJtdcOjK7rAHpHphUb1iCvgkU3GpfvicLMwwnfMT0=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "f20dc5d9b8027381c474144ecabc9034d6a839a3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_2"
       },
       "locked": {
         "lastModified": 1749398372,
@@ -168,7 +187,7 @@
     },
     "mango": {
       "inputs": {
-        "flake-parts": "flake-parts",
+        "flake-parts": "flake-parts_2",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -196,11 +215,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774608792,
-        "narHash": "sha256-rzRm1wglf8QyYOKcNx5VyL06LQAriAonaw93jPa9Mm8=",
+        "lastModified": 1775299574,
+        "narHash": "sha256-IHnr63tqT2B7uImRMv7VK1ZKWlyXMzOpJM4C8i81LPw=",
         "ref": "refs/heads/master",
-        "rev": "40ba97d162a6c3914c492962a25a017750386bdc",
-        "revCount": 8,
+        "rev": "0dc8fed5727c2d6022f6cc46fc88c33819c9e2c6",
+        "revCount": 17,
         "type": "git",
         "url": "ssh://git@github.com/jibi/nix-secrets"
       },
@@ -226,6 +245,21 @@
       }
     },
     "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1772328832,
+        "narHash": "sha256-e+/T/pmEkLP6BHhYjx6GmwP5ivonQQn0bJdH9YrRB+Q=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "c185c7a5e5dd8f9add5b2f8ebeff00888b070742",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "nixpkgs-lib_2": {
       "locked": {
         "lastModified": 1748740939,
         "narHash": "sha256-rQaysilft1aVMwF14xIdGS3sj1yHlI6oKQNBRTF40cc=",

@@ -8,8 +8,11 @@
 
   myconfig.desktop.enable = true;
   myconfig.cuda.enable = true;
+  myconfig.virtualisation.enable = true;
 
   networking.hostName = "xps";
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
