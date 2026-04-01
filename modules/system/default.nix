@@ -3,6 +3,7 @@
 {
   imports = [
     ../options.nix
+    ../shared.nix
     ./nix.nix
     ./locale.nix
     ./boot.nix

@@ -3,6 +3,7 @@
   mango,
   nix-secrets,
   home-manager,
+  shared,
   ...
 }:
 
@@ -13,7 +14,7 @@
   home-manager.useUserPackages = true;
   home-manager.sharedModules = [ nix-secrets.homeManagerModules.default ];
   home-manager.extraSpecialArgs = {
-    inherit mango;
+    inherit mango shared;
     isDesktop = config.myconfig.desktop.enable;
   };
 

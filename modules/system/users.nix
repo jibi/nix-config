@@ -2,9 +2,9 @@
   config,
   lib,
   pkgs,
+  shared,
   ...
 }:
-
 {
   users.users.jibi = {
     isNormalUser = true;
@@ -20,6 +20,7 @@
       "video"
     ];
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [ shared.sshPubKey ];
   };
 
   programs.zsh.enable = true;
