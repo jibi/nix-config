@@ -42,6 +42,7 @@
     linuxHeaders
     (lib.hiPrio llvmPackages.clang)
     marker
+    marp-cli
     mgba
     nautilus
     networkmanagerapplet
