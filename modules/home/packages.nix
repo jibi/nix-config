@@ -62,7 +62,6 @@
     signal-desktop
     sqlite
     swaybg
-    thunar
     trace-cmd
     vlc
     websocat
