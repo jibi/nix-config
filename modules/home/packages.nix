@@ -63,6 +63,7 @@
     sqlite
     swaybg
     thunar
+    trace-cmd
     vlc
     websocat
     wlr-randr
