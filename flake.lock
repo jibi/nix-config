@@ -53,11 +53,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775088444,
-        "narHash": "sha256-hGWixWAyE3YhUQdHh1fZao8C2r7Khokx5CwzTdZdgKY=",
+        "lastModified": 1775271377,
+        "narHash": "sha256-0ru4G0uQeokPTlJGuRHf3ApBZMeuIRdUyp0SYi//RWM=",
         "owner": "sadjow",
         "repo": "claude-code-nix",
-        "rev": "b46a627009fd58cd0b28d0ea20d503f7562bc90a",
+        "rev": "214fdf6592f40a8bb472e80283c029d01fb6653d",
         "type": "github"
       },
       "original": {
@@ -150,11 +150,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775143651,
-        "narHash": "sha256-S0RqAyDPMTcv9vASMaE8eY1QexFysAOdnxUxFHIPOyE=",
+        "lastModified": 1775360939,
+        "narHash": "sha256-XUBlSgUFdvTh6+K5LcI5mJu5F5L8scmJDMRiZM484TM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d166a078541982a76f14d3e06e9665fa5c9ed85e",
+        "rev": "2097a5c82bdc099c6135eae4b111b78124604554",
         "type": "github"
       },
       "original": {
@@ -194,11 +194,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1774866937,
-        "narHash": "sha256-y0gRNhn61f52Kq7cFXEDhRn5A66e4qlqlaeLTYaw9Ac=",
+        "lastModified": 1775385829,
+        "narHash": "sha256-1lrZM6TwIVoiU2/cO6+OMuA6Fh9h5bUE1ZKo43X9vg0=",
         "owner": "mangowm",
         "repo": "mango",
-        "rev": "52676492fe22356b45f9cbda9d24d887f4039f02",
+        "rev": "e3a0d54b9a0167a83f724d710f87f8bca6ecabae",
         "type": "github"
       },
       "original": {
@@ -215,11 +215,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775299574,
-        "narHash": "sha256-IHnr63tqT2B7uImRMv7VK1ZKWlyXMzOpJM4C8i81LPw=",
+        "lastModified": 1775596881,
+        "narHash": "sha256-spyS02qS15Qcw0oCgkjEuMlf8bkDfiVUcp5kShe3L6E=",
         "ref": "refs/heads/master",
-        "rev": "0dc8fed5727c2d6022f6cc46fc88c33819c9e2c6",
-        "revCount": 17,
+        "rev": "72e34b659c5774b56a632cea5307656f61f42274",
+        "revCount": 18,
         "type": "git",
         "url": "ssh://git@github.com/jibi/nix-secrets"
       },
