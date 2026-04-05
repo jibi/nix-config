@@ -69,7 +69,10 @@ in
 
   networking = {
     networkmanager.enable = lib.mkForce false;
-    #firewall.allowedTCPPorts = [ 80 443 ];
+    firewall.allowedTCPPorts = [
+      80
+      443
+    ];
     hostName = "rpi";
     wireless = {
       enable = true;
@@ -84,21 +87,21 @@ in
     };
 
     bisca = {
-      enable = false;
+      enable = true;
       backend.package = crossPkgs.bisca-backend;
     };
 
     umami = {
-      enable = false;
+      enable = true;
       settings.PORT = 3001;
       settings.APP_SECRET_FILE = config.age.secrets.umami-secret.path;
     };
 
-    #caddy.virtualHosts."stats.jibi.io" = {
-    #extraConfig = ''
-    #    reverse_proxy localhost:3001
-    #'';
-    #};
+    caddy.virtualHosts."stats.jibi.io" = {
+      extraConfig = ''
+        reverse_proxy localhost:3001
+      '';
+    };
   };
 
   system.stateVersion = "25.11";
