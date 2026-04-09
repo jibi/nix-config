@@ -39,6 +39,35 @@ return {
   },
 
   {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        rust = { "rustfmt" },
+      },
+      formatters = {
+        rustfmt = {
+          condition = function(self, ctx)
+            -- only use rustfmt directly when rust-analyzer is not attached
+            return #vim.lsp.get_clients({ bufnr = ctx.buf, name = "rust_analyzer" }) == 0
+          end,
+        },
+      },
+    },
+  },
+
+  {
+    "mrcjkb/rustaceanvim",
+    opts = {
+      server = {
+        auto_attach = function(bufnr)
+          -- Don't attach rust-analyzer in kernel module projects (Makefile in root)
+          return vim.fn.filereadable(vim.fn.getcwd() .. "/Makefile") ~= 1
+        end,
+      },
+    },
+  },
+
+  {
     "godlygeek/tabular",
     -- Optional: If you only want to load it when calling :Tabularize
     cmd = { "Tabularize" },
