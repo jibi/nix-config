@@ -69,12 +69,6 @@ return {
 
   {
     "godlygeek/tabular",
-    -- Optional: If you only want to load it when calling :Tabularize
     cmd = { "Tabularize" },
   },
-
-  --  { "hrsh7th/nvim-cmp", enabled = false },
-  --  { "saghen/blink.cmp", enabled = false },
-  --  { "saghen/blink.compat", enabled = false },
-  --  { "hrsh7th/nvim-cmp", enabled = false },
 }

@@ -8,6 +8,8 @@
 {
   programs.neovim = {
     enable = true;
+    withRuby = false;
+    withPython3 = false;
 
     # Tools and LSP servers available on $PATH for Neovim.
     extraPackages = with pkgs; [
@@ -101,7 +103,6 @@
           plenary-nvim
           snacks-nvim
           todo-comments-nvim
-          tokyonight-nvim
           trouble-nvim
           ts-comments-nvim
           which-key-nvim
@@ -180,8 +181,6 @@
               },
             },
           },
-          -- see https://www.lazyvim.org/plugins/colorscheme on how to change/install colorschemes 
-          install = { colorscheme = { "tokyonight", "habamax" } },
           checker = { enabled = true, notify = false },
           performance = {
             rtp = {
