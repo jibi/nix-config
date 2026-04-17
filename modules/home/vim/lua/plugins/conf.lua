@@ -68,6 +68,26 @@ return {
   },
 
   {
+    "saghen/blink.cmp",
+    dependencies = { "Kaiser-Yang/blink-cmp-dictionary" },
+    opts = {
+      sources = {
+        default = { "dictionary", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          dictionary = {
+            module = "blink-cmp-dictionary",
+            name = "Dict",
+            min_keyword_length = 3,
+            opts = {
+              dictionary_files = { vim.g.dictionary_file },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  {
     "godlygeek/tabular",
     cmd = { "Tabularize" },
   },
