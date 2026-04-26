@@ -28,6 +28,7 @@
     gcc
     gcc-arm-embedded
     gedit
+    ghc
     gimp
     gnumake
     google-chrome
