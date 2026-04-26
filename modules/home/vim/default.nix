@@ -24,28 +24,33 @@
       # Language Servers (make sure to install these,
       # they can easily be configured via the extras available
       # for many languages: https://www.lazyvim.org/extras)
-      # LUA
+      # luA
       lua-language-server
       stylua
 
-      # NIX
+      # nix
       nil
       nixfmt
       statix
 
-      # C/C++
+      # c
       clang-tools
 
-      # JSON
+      # json
       vscode-langservers-extracted
 
-      # TOML
+      # toml
       taplo
 
-      # RUST
+      # rust
       rust-analyzer
 
-      # SHELL
+      # haskell
+      haskell-language-server
+      fourmolu
+      hlint
+
+      # sh
       shfmt
 
       # Dictionary
@@ -113,6 +118,7 @@
           tabular
           SchemaStore-nvim
           clangd_extensions-nvim
+          haskell-tools-nvim
         ];
 
         # Maps a plugin derivation to a { name, path } pair.
@@ -153,6 +159,7 @@
             { import = "lazyvim.plugins.extras.lang.json" },
             { import = "lazyvim.plugins.extras.lang.toml" },
             { import = "lazyvim.plugins.extras.lang.rust" },
+            { import = "lazyvim.plugins.extras.lang.haskell" },
 
             -- disable mason.nvim, use programs.neovim.extraPackages
             { "mason-org/mason-lspconfig.nvim", enabled = false },
