@@ -17,3 +17,15 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.diagnostic.disable(event.buf)
   end,
 })
+
+local md_autowrap = vim.api.nvim_create_augroup("md_autowrap", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = md_autowrap,
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.textwidth = 80
+    vim.opt_local.formatoptions:append("t")
+    vim.opt_local.formatoptions:append("a")
+  end,
+})
