@@ -56,7 +56,7 @@
         {
           key = "Return";
           mods = "Shift";
-          chars = "\\u001B\\r";
+          chars = "[13;2u";
         }
       ];
     };
