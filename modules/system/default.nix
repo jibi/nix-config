@@ -7,6 +7,7 @@
     ./nix.nix
     ./locale.nix
     ./boot.nix
+    ./systemd.nix
     ./networking.nix
     ./users.nix
     ./packages.nix
