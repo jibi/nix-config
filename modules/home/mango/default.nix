@@ -256,11 +256,11 @@
       enable = true;
       timeouts = [
         {
-          timeout = 300;
+          timeout = 600;
           command = lock;
         }
         {
-          timeout = 300;
+          timeout = 600;
           command = dpms "off";
           resumeCommand = dpms "on";
         }
