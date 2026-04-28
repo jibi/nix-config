@@ -47,6 +47,7 @@
     mgba
     nautilus
     networkmanagerapplet
+    nixos-anywhere
     nodejs
     ollama
     pass

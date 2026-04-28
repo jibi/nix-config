@@ -23,6 +23,11 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
   };
 
   outputs =
@@ -33,6 +38,8 @@
       bisca,
       mango,
       nix-secrets,
+      disko,
+      nixos-facter-modules,
       ...
     }:
     let
