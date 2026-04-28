@@ -57,10 +57,17 @@
         {
           name,
           system ? "x86_64-linux",
+          installer ? false,
         }:
         nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
-          modules = [ ./hosts/${name} ];
+          modules = [
+            ./hosts/${name}
+          ]
+          ++ nixpkgs.lib.optionals installer [
+            disko.nixosModules.disko
+            nixos-facter-modules.nixosModules.facter
+          ];
         };
     in
     {
