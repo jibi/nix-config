@@ -65,6 +65,7 @@ lib.mkIf config.myconfig.desktop.enable {
       noto-fonts-color-emoji # Emoji support
       font-awesome # Icons for some applications
       corefonts # Microsoft TrueType Core Fonts
+      nerd-fonts.dejavu-sans-mono
     ];
 
     fontconfig = {
