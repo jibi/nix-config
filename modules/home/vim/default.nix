@@ -211,7 +211,5 @@
       '';
   };
 
-  xdg.configFile."nvim/lua" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix-config/modules/home/vim/lua";
-  };
+  xdg.configFile."nvim/lua".source = ./lua;
 }
