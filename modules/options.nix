@@ -9,5 +9,14 @@
       type = lib.types.str;
       default = "1.0";
     };
+    wifi.backend = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "nm"
+          "wpa_supplicant"
+        ]
+      );
+      default = null;
+    };
   };
 }

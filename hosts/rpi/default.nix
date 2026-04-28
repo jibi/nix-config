@@ -67,17 +67,15 @@ in
     };
   };
 
+  myconfig.wifi.backend = "wpa_supplicant";
+
   networking = {
-    networkmanager.enable = lib.mkForce false;
     firewall.allowedTCPPorts = [
       80
       443
     ];
     hostName = "rpi";
-    wireless = {
-      enable = true;
-      interfaces = [ "wlan0" ];
-    };
+    wireless.interfaces = [ "wlan0" ];
   };
 
   services = {
