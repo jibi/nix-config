@@ -2,6 +2,7 @@
   config,
   pkgs,
   mango,
+  displayScale,
   ...
 }:
 
@@ -102,7 +103,7 @@
       focuscolor = "0x000000ff";
 
       monitorrule = [
-        "name:^eDP-1$,scale:2.5"
+        "name:^eDP-1$,scale:${displayScale}"
         "name:^DP-2$,scale:2"
       ];
 

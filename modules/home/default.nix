@@ -16,10 +16,16 @@
   home-manager.extraSpecialArgs = {
     inherit mango shared;
     isDesktop = config.myconfig.desktop.enable;
+    displayScale = config.myconfig.display.scale;
   };
 
   home-manager.users.jibi =
-    { isDesktop, lib, ... }:
+    {
+      isDesktop,
+      displayScale,
+      lib,
+      ...
+    }:
     {
       home.stateVersion = "25.05";
 

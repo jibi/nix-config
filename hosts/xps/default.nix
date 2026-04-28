@@ -7,6 +7,7 @@
   ];
 
   myconfig.desktop.enable = true;
+  myconfig.display.scale = "2.5";
   myconfig.cuda.enable = true;
   myconfig.virtualisation.enable = true;
 
