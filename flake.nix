@@ -65,11 +65,32 @@
     in
     {
       nixosConfigurations = {
+        # hosts
         xps = mkHost { name = "xps"; };
         macbook = mkHost { name = "macbook"; };
         rpi = mkHost {
           name = "rpi";
           system = "aarch64-linux";
+        };
+
+        # ISO installer with SSH access
+        installer-iso = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          inherit specialArgs;
+          modules = [
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            ./modules/options.nix
+            ./modules/shared.nix
+            ./modules/system/networking.nix
+            nix-secrets.nixosModules.default
+            (
+              { shared, ... }:
+              {
+                users.users.nixos.openssh.authorizedKeys.keys = [ shared.sshPubKey ];
+                myconfig.wifi.backend = "nm";
+              }
+            )
+          ];
         };
       };
 
