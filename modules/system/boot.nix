@@ -5,7 +5,7 @@ lib.mkIf (pkgs.system == "x86_64-linux") {
     systemd-boot = {
       enable = true;
       consoleMode = "2";
-      configurationLimit = 5;
+      configurationLimit = 2;
     };
 
     efi.canTouchEfiVariables = true;
