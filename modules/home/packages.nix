@@ -31,7 +31,6 @@
     ghc
     gimp
     gnumake
-    google-chrome
     gparted
     hsetroot
     imagemagick
