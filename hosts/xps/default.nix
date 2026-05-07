@@ -9,7 +9,7 @@
   myconfig.desktop.enable = true;
   myconfig.display.scale = "2.5";
   myconfig.wifi.backend = "nm";
-  myconfig.cuda.enable = true;
+  myconfig.cuda.enable = false;
   myconfig.virtualisation.enable = true;
 
   networking.hostName = "xps";
