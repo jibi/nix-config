@@ -90,7 +90,7 @@
       trackpad_natural_scrolling = 0;
       axis_scroll_factor = 0.5;
       disable_while_typing = 1;
-      accel_speed = -0.2;
+      trackpad_accel_speed = -0.2;
 
       # Appearance
       gappih = 0;
