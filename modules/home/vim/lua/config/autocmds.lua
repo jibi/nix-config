@@ -18,41 +18,58 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-local md_autowrap = vim.api.nvim_create_augroup("md_autowrap", { clear = true })
+local md_textwidth = vim.api.nvim_create_augroup("md_textwidth", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = md_autowrap,
+  group = md_textwidth,
   pattern = "markdown",
   callback = function(event)
     vim.opt_local.textwidth = 80
-    vim.opt_local.formatoptions:append("t")
-    vim.opt_local.formatoptions:append("a")
+    vim.opt_local.formatexpr = ""
 
-    vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter" }, {
-      group = md_autowrap,
-      buffer = event.buf,
-      callback = function()
-        local ok, node = pcall(vim.treesitter.get_node)
-        local in_code = false
-        while ok and node do
-          local t = node:type()
-          if t == "fenced_code_block" or t == "code_fence_content" or t == "indented_code_block" then
-            in_code = true
-            break
+    vim.api.nvim_buf_create_user_command(event.buf, "FormatMarkdown", function()
+      local parser = vim.treesitter.get_parser(event.buf, "markdown")
+      local tree = parser:parse()[1]
+      local root = tree:root()
+
+      local skip = {}
+      local function collect(node)
+        local t = node:type()
+        if t == "fenced_code_block" or t == "indented_code_block" then
+          local sr, _, er, _ = node:range()
+          for line = sr, er - 1 do
+            skip[line] = true
           end
-          node = node:parent()
+          return
         end
-        local fo = vim.bo.formatoptions
-        local has_t = fo:find("t") ~= nil
-        local has_a = fo:find("a") ~= nil
-        if in_code then
-          if has_t then vim.opt_local.formatoptions:remove("t") end
-          if has_a then vim.opt_local.formatoptions:remove("a") end
+        for child in node:iter_children() do
+          collect(child)
+        end
+      end
+      collect(root)
+
+      local total = vim.api.nvim_buf_line_count(event.buf)
+      local ranges = {}
+      local start = nil
+      for i = 0, total - 1 do
+        if skip[i] then
+          if start ~= nil then
+            table.insert(ranges, { start, i - 1 })
+            start = nil
+          end
         else
-          if not has_t then vim.opt_local.formatoptions:append("t") end
-          if not has_a then vim.opt_local.formatoptions:append("a") end
+          start = start or i
         end
-      end,
-    })
+      end
+      if start ~= nil then
+        table.insert(ranges, { start, total - 1 })
+      end
+
+      for i = #ranges, 1, -1 do
+        local r = ranges[i]
+        vim.api.nvim_win_set_cursor(0, { r[1] + 1, 0 })
+        vim.cmd(string.format("normal! V%dGgq", r[2] + 1))
+      end
+    end, {})
   end,
 })
