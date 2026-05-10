@@ -10,7 +10,7 @@
 let
   crossPkgs = import nixpkgs {
     localSystem = "x86_64-linux";
-    crossSystem = pkgs.system;
+    crossSystem = pkgs.stdenv.hostPlatform.system;
     overlays = [ bisca.overlays.default ];
   };
 in
