@@ -212,11 +212,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1778492993,
-        "narHash": "sha256-TWMTvHK7h5TFvt+/4RvwbV1o7tci1FxgVRdO63AJm1I=",
+        "lastModified": 1778510356,
+        "narHash": "sha256-NjllEbhUZHlhutwZFWkZSzAtmJZpZCjQBPMPlEBIyGw=",
         "owner": "mangowm",
         "repo": "mango",
-        "rev": "f1970d772a45c2e98dce04002b8c45f295119473",
+        "rev": "4fbc257ff2864a42e14fbb93b775c4ba45747fdd",
         "type": "github"
       },
       "original": {
@@ -307,6 +307,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-rpi-kernel": {
+      "locked": {
+        "lastModified": 1775581907,
+        "narHash": "sha256-aIBIBBLKFTG9rcdha98TLC5HiYjjOyBAPVl9JDiX3DM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "77bb0683a4d1cd66d08ccfe62a851e1068fbd23a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "77bb0683a4d1cd66d08ccfe62a851e1068fbd23a",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1777954456,
@@ -332,7 +348,8 @@
         "mango": "mango",
         "nix-secrets": "nix-secrets",
         "nixos-facter-modules": "nixos-facter-modules",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3",
+        "nixpkgs-rpi-kernel": "nixpkgs-rpi-kernel"
       }
     },
     "scenefx": {

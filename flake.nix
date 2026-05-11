@@ -3,6 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # Pinned to the last nixos-unstable rev that has a cached rpi kernel, i.e. right before
+    # db3b2013d5737a74bb4af2287a7931a558f727ca | linux-rpi: 6.12.62-1+rpt1 -> 6.12.75-1+rpt1
+    nixpkgs-rpi-kernel.url = "github:NixOS/nixpkgs/77bb0683a4d1cd66d08ccfe62a851e1068fbd23a";
     nix-secrets = {
       url = "git+ssh://git@github.com/jibi/nix-secrets";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,6 +36,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-rpi-kernel,
       home-manager,
       claude-code,
       bisca,
@@ -51,6 +55,7 @@
           mango
           nix-secrets
           nixpkgs
+          nixpkgs-rpi-kernel
           ;
       };
       mkHost =
