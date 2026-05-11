@@ -30,7 +30,6 @@
       home.stateVersion = "25.05";
 
       imports = [
-        ./vim
         ./zsh.nix
         ./ssh.nix
       ]
@@ -40,6 +39,7 @@
         ./git.nix
         ./mango
         ./packages.nix
+        ./vim
         ./xconfig.nix
       ];
     };
