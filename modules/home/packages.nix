@@ -13,7 +13,7 @@
     btrfs-progs
     cpufrequtils
     ccache
-    claude-code
+    llm-agents.claude-code
     cmake
     diceware
     difftastic

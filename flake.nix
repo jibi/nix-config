@@ -18,10 +18,7 @@
       url = "git+ssh://git@github.com/jibi/bisca";
       inputs.nixpkgs.url = "github:jibi/nixpkgs/partial-revert-remove-trailing-line-continuations";
     };
-    claude-code = {
-      url = "github:sadjow/claude-code-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    llm-agents.url = "github:numtide/llm-agents.nix";
     mango = {
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,7 +35,7 @@
       nixpkgs,
       nixpkgs-rpi-kernel,
       home-manager,
-      claude-code,
+      llm-agents,
       bisca,
       mango,
       nix-secrets,
@@ -50,7 +47,7 @@
       specialArgs = {
         inherit
           bisca
-          claude-code
+          llm-agents
           home-manager
           mango
           nix-secrets
