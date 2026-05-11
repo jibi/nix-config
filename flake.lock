@@ -27,16 +27,14 @@
     "bisca": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1778239062,
-        "narHash": "sha256-B13cXDKnPOKSnd4Gn7vpiP/AmC/OVmcWjCiH8xEgym0=",
+        "lastModified": 1778526435,
+        "narHash": "sha256-c32+atshnx46Dh6zBRTLEsY4JlIrb8/iZnpPcSTj0IA=",
         "ref": "refs/heads/master",
-        "rev": "a6fd71c2a47db950fc53edfb8174bf75157546dd",
-        "revCount": 225,
+        "rev": "62bb16812f0766618f861b661b157f4de8e478a9",
+        "revCount": 227,
         "type": "git",
         "url": "ssh://git@github.com/jibi/bisca"
       },
@@ -170,11 +168,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778365864,
-        "narHash": "sha256-ImoT/wqmgMImf2dAC+E0MverAdA4QXsedOeES9B7Ezw=",
+        "lastModified": 1778503501,
+        "narHash": "sha256-08L/X4/do7nET4rzidJ76eV/1r+mB7DchVpdPypsghc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2f419037039a152448c5f4ae9494154753d1b399",
+        "rev": "85ba629c79449badf4338117c27f0ee92b4b9f1a",
         "type": "github"
       },
       "original": {
@@ -214,11 +212,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1778376841,
-        "narHash": "sha256-mUSCkFQGrcdVitwx0fDajWxxgvAV5BmppP4ShV3JOyY=",
+        "lastModified": 1778492993,
+        "narHash": "sha256-TWMTvHK7h5TFvt+/4RvwbV1o7tci1FxgVRdO63AJm1I=",
         "owner": "mangowm",
         "repo": "mango",
-        "rev": "cabafb2393ff71615af4959a51885c8d1eefc9a0",
+        "rev": "f1970d772a45c2e98dce04002b8c45f295119473",
         "type": "github"
       },
       "original": {
@@ -265,16 +263,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1777954456,
-        "narHash": "sha256-hGdgeU2Nk87RAuZyYjyDjFL6LK7dAZN5RE9+hrDTkDU=",
-        "owner": "NixOS",
+        "lastModified": 1778500923,
+        "narHash": "sha256-gPqylQk14EImLthsfv05zW4/+fOIuc6E0WGUYt6pMMw=",
+        "owner": "jibi",
         "repo": "nixpkgs",
-        "rev": "549bd84d6279f9852cae6225e372cc67fb91a4c1",
+        "rev": "42955023b2aa6d0ebfef5dbff0c9bc474e343a08",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "owner": "jibi",
+        "ref": "partial-revert-remove-trailing-line-continuations",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -309,6 +307,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1777954456,
+        "narHash": "sha256-hGdgeU2Nk87RAuZyYjyDjFL6LK7dAZN5RE9+hrDTkDU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "549bd84d6279f9852cae6225e372cc67fb91a4c1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "bisca": "bisca",
@@ -318,7 +332,7 @@
         "mango": "mango",
         "nix-secrets": "nix-secrets",
         "nixos-facter-modules": "nixos-facter-modules",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "scenefx": {

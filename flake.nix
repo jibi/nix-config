@@ -13,7 +13,7 @@
     };
     bisca = {
       url = "git+ssh://git@github.com/jibi/bisca";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.url = "github:jibi/nixpkgs/partial-revert-remove-trailing-line-continuations";
     };
     claude-code = {
       url = "github:sadjow/claude-code-nix";

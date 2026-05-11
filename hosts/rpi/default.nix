@@ -1,6 +1,5 @@
 {
   config,
-  nixpkgs,
   bisca,
   lib,
   pkgs,
@@ -8,9 +7,12 @@
 }:
 
 let
-  crossPkgs = import nixpkgs {
-    localSystem = "x86_64-linux";
-    crossSystem = pkgs.stdenv.hostPlatform.system;
+  buildSystem = pkgs.stdenv.buildPlatform.system;
+  system = pkgs.stdenv.hostPlatform.system;
+
+  crossPkgs = import bisca.inputs.nixpkgs {
+    localSystem = buildSystem;
+    crossSystem = system;
     overlays = [ bisca.overlays.default ];
   };
 in
