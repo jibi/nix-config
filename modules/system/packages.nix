@@ -12,26 +12,32 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    bash
-    bpftools
-    bpftrace
-    curl
-    dnsmasq
-    file
-    gdb
-    htop
-    jq
-    neovim
-    nmap
-    pciutils
-    psmisc
-    ripgrep
-    tcpdump
-    unzip
-    wireshark
-    zsh
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      bash
+      curl
+      dnsmasq
+      file
+      htop
+      jq
+      neovim
+      nmap
+      pciutils
+      psmisc
+      ripgrep
+      tcpdump
+      unzip
+      zsh
+    ])
+    ++ lib.optionals config.myconfig.desktop.enable (
+      with pkgs;
+      [
+        bpftools
+        bpftrace
+        gdb
+        wireshark
+      ]
+    );
 
   programs = {
     gnupg.agent = {
