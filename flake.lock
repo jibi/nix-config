@@ -30,11 +30,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1778526435,
-        "narHash": "sha256-c32+atshnx46Dh6zBRTLEsY4JlIrb8/iZnpPcSTj0IA=",
+        "lastModified": 1778668913,
+        "narHash": "sha256-vpGW0iXNxOcwaPZnUSz00XmprDSXmY4H2Z9wBfrhxO4=",
         "ref": "refs/heads/master",
-        "rev": "62bb16812f0766618f861b661b157f4de8e478a9",
-        "revCount": 227,
+        "rev": "babbd138b30fb1123fce9eb8ace2d4010e17a36b",
+        "revCount": 229,
         "type": "git",
         "url": "ssh://git@github.com/jibi/bisca"
       },
