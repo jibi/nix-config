@@ -16,7 +16,7 @@
     };
     bisca = {
       url = "git+ssh://git@github.com/jibi/bisca";
-      inputs.nixpkgs.url = "github:jibi/nixpkgs/partial-revert-remove-trailing-line-continuations";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
     mango = {
