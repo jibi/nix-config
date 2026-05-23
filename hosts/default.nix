@@ -10,19 +10,22 @@
 
 {
   imports = [
-    ../modules/system
-    ../modules/home
     nix-secrets.nixosModules.default
     bisca.nixosModules.default
     mango.nixosModules.mango
+
+    ../modules/system
+    ../modules/home
   ];
 
-  nixpkgs.overlays = lib.optional config.myconfig.desktop.enable llm-agents.overlays.default;
+  config = lib.mkIf config.myconfig.desktop.enable {
+    nixpkgs.overlays = [ llm-agents.overlays.default ];
 
-  nix.settings = lib.mkIf config.myconfig.desktop.enable {
-    substituters = [ "https://cache.numtide.com" ];
-    trusted-public-keys = [
-      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-    ];
+    nix.settings = {
+      substituters = [ "https://cache.numtide.com" ];
+      trusted-public-keys = [
+        "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+      ];
+    };
   };
 }
