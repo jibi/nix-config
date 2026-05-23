@@ -76,7 +76,6 @@
       nixosConfigurations = {
         # hosts
         xps = mkHost { name = "xps"; };
-        macbook = mkHost { name = "macbook"; };
         rpi = mkHost {
           name = "rpi";
           system = "aarch64-linux";
