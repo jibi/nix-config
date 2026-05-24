@@ -23,6 +23,7 @@ in
   imports = [
     ../default.nix
     ./sd-image.nix
+    ./wireguard.nix
   ];
 
   nix.settings.trusted-users = [ "jibi" ];

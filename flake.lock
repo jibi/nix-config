@@ -299,11 +299,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779513794,
-        "narHash": "sha256-fYLx+FMCIvSlJ4sKUGoQ+HRhC/jcecbIpeJkYgwbGKY=",
+        "lastModified": 1779516792,
+        "narHash": "sha256-7ikGJ5/sC8CeI/Si5+n+1tCr998p0hZ9OXW3zPpKdzY=",
         "ref": "refs/heads/master",
-        "rev": "238570a9272f9c474bd1d93b0fd6c89eba5bd292",
-        "revCount": 26,
+        "rev": "0e08644eb3ece93a9f53ffcce1974309534aec14",
+        "revCount": 28,
         "type": "git",
         "url": "ssh://git@github.com/jibi/nix-secrets"
       },
