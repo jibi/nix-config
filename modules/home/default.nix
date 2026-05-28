@@ -35,12 +35,10 @@
       ]
       ++ lib.optionals isDesktop [
         ./alacritty.nix
-        ./awesome
         ./git.nix
         ./mango
         ./packages.nix
         ./vim
-        ./xconfig.nix
       ];
     };
 }
