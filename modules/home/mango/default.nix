@@ -6,6 +6,9 @@
   ...
 }:
 
+let
+  batteryWatch = pkgs.writers.writeRuby "battery-watch" { } (builtins.readFile ./battery-watch.rb);
+in
 {
   imports = [ mango.hmModules.mango ];
 
@@ -39,6 +42,27 @@
       "urgency=low".border-color = "#6c7086";
       "urgency=high".border-color = "#f38ba8";
     };
+  };
+
+  systemd.user.services.battery-watch = {
+    Unit.Description = "Notify on low battery, suspend on critical";
+    Service = {
+      Type = "oneshot";
+      Environment = [
+        "NOTIFY_SEND=${pkgs.libnotify}/bin/notify-send"
+        "SYSTEMCTL=${pkgs.systemd}/bin/systemctl"
+      ];
+      ExecStart = "${batteryWatch}";
+    };
+  };
+
+  systemd.user.timers.battery-watch = {
+    Unit.Description = "Run battery-watch every 30s";
+    Timer = {
+      OnBootSec = "30s";
+      OnUnitActiveSec = "30s";
+    };
+    Install.WantedBy = [ "timers.target" ];
   };
 
   xdg.desktopEntries.discord-wayland = {
