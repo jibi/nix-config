@@ -16,7 +16,30 @@
     gtk.enable = true;
   };
 
-  home.packages = [ pkgs.waylock ];
+  home.packages = [
+    pkgs.waylock
+    pkgs.libnotify
+  ];
+
+  services.mako = {
+    enable = true;
+    settings = {
+      font = "monospace 12";
+
+      background-color = "#1e1e2eee";
+      text-color = "#cdd6f4";
+      border-color = "#89b4fa";
+
+      border-size = 2;
+      border-radius = 6;
+      padding = "10";
+      margin = "10";
+      max-icon-size = 48;
+
+      "urgency=low".border-color = "#6c7086";
+      "urgency=high".border-color = "#f38ba8";
+    };
+  };
 
   xdg.desktopEntries.discord-wayland = {
     categories = [
