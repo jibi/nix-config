@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -37,8 +37,8 @@
   };
 
   fileSystems."/media/jibi/kb" = {
-    device = "/dev/disk/by-label/RPI-RP2";
-    fsType = "vfat";
+    device = lib.mkForce "/dev/disk/by-label/RPI-RP2";
+    fsType = lib.mkForce "vfat";
     options = [
       "noauto"
       "x-systemd.automount"
