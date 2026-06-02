@@ -22,6 +22,7 @@ in
   home.packages = [
     pkgs.waylock
     pkgs.libnotify
+    pkgs.grim
   ];
 
   services.mako = {
