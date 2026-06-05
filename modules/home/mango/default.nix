@@ -39,6 +39,7 @@ in
       padding = "10";
       margin = "10";
       max-icon-size = 48;
+      default-timeout = 3000;
 
       "urgency=low".border-color = "#6c7086";
       "urgency=high".border-color = "#f38ba8";
