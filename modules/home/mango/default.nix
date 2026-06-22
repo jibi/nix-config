@@ -263,8 +263,8 @@ in
         "NONE,XF86AudioRaiseVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ +2500"
         "NONE,XF86AudioLowerVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ -2500"
         "NONE,XF86AudioMute,spawn,pactl set-sink-mute @DEFAULT_SINK@ toggle"
-        "NONE,XF86MonBrightnessUp,spawn,brightnessctl s '+5%'"
-        "NONE,XF86MonBrightnessDown,spawn,brightnessctl s '5%-'"
+        "NONE,XF86MonBrightnessUp,spawn,brightnessctl s '+2%'"
+        "NONE,XF86MonBrightnessDown,spawn,brightnessctl s '2%-'"
       ];
 
       mousebind = [
