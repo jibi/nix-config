@@ -43,7 +43,6 @@
 
   networking = {
     hostName = "xps";
-    firewall.trustedInterfaces = [ "virbr0" ];
   };
 
   services = {
