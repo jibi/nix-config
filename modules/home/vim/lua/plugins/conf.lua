@@ -46,7 +46,7 @@ return {
       },
       formatters = {
         rustfmt = {
-          condition = function(self, ctx)
+          condition = function(_, ctx)
             -- only use rustfmt directly when rust-analyzer is not attached
             return #vim.lsp.get_clients({ bufnr = ctx.buf, name = "rust_analyzer" }) == 0
           end,
@@ -59,9 +59,12 @@ return {
     "mrcjkb/rustaceanvim",
     opts = {
       server = {
-        auto_attach = function(bufnr)
-          -- Don't attach rust-analyzer in kernel module projects (Makefile in root)
-          return vim.fn.filereadable(vim.fn.getcwd() .. "/Makefile") ~= 1
+        auto_attach = function(_)
+          local cwd = vim.fn.getcwd()
+          if vim.fn.filereadable(cwd .. "/Makefile") == 1 then
+            return vim.fn.filereadable(cwd .. "/rust-project.json") == 1
+          end
+          return true
         end,
       },
     },
