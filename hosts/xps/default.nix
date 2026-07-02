@@ -6,17 +6,17 @@
     ./hardware-configuration.nix
   ];
 
-  myconfig.desktop.enable = true;
-  myconfig.display.scale = "2.5";
-  myconfig.wifi.backend = "nm";
-  myconfig.cuda.enable = false;
-  myconfig.virtualisation.enable = true;
-
-  networking.hostName = "xps";
-
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  myconfig = {
+    desktop.enable = true;
+    display.scale = "2.5";
+    wifi.backend = "nm";
+    cuda.enable = false;
+    virtualisation.enable = true;
+  };
 
   boot = {
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
+
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "snd_hda_intel" ];
     extraModprobeConfig = ''
@@ -26,14 +26,6 @@
       "vfat"
       "fuse.sshfs"
     ];
-  };
-
-  networking.firewall.trustedInterfaces = [ "virbr0" ];
-
-  services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
-    HandleLidSwitchDocked = "ignore";
-    HandleLidSwitchExternalPower = "suspend";
   };
 
   fileSystems."/media/jibi/kb" = {
@@ -47,6 +39,23 @@
       "gid=100"
       "umask=022"
     ];
+  };
+
+  networking = {
+    hostName = "xps";
+    firewall.trustedInterfaces = [ "virbr0" ];
+  };
+
+  services = {
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchDocked = "ignore";
+      HandleLidSwitchExternalPower = "suspend";
+    };
+
+    udev.extraRules = ''
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="9008", MODE="0666"
+    '';
   };
 
   system.stateVersion = "26.11";

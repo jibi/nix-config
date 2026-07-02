@@ -17,6 +17,7 @@
       bash
       curl
       dnsmasq
+      android-tools
       file
       htop
       jq
