@@ -35,6 +35,7 @@
       ]
       ++ lib.optionals isDesktop [
         ./alacritty.nix
+        ./ghostty.nix
         ./git.nix
         ./mango
         ./packages.nix

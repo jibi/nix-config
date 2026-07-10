@@ -174,7 +174,7 @@ in
 
         # Spawn
         "ALT,p,spawn,rofi -show drun"
-        "ALT,Return,spawn,alacritty"
+        "ALT,Return,spawn,ghostty"
 
         # Kill / Quit
         "ALT+SHIFT,c,killclient,"
