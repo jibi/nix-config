@@ -11,7 +11,7 @@
     display.scale = "2.5";
     wifi.backend = "nm";
     cuda.enable = false;
-    virtualisation.enable = true;
+    virtualisation.enable = false;
   };
 
   boot = {
