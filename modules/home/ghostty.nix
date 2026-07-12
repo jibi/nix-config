@@ -41,6 +41,7 @@
 
       resize-overlay = "never";
       window-inherit-working-directory = false;
+      scrollbar = "never";
 
       scrollback-limit = 100000;
 
