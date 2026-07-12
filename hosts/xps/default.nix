@@ -17,7 +17,7 @@
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [ "snd_hda_intel" ];
     extraModprobeConfig = ''
       options snd_hda_intel power_save=0 power_save_controller=N
