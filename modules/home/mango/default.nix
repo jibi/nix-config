@@ -2,7 +2,7 @@
   config,
   pkgs,
   mango,
-  displayScale,
+  myconfig,
   ...
 }:
 
@@ -12,60 +12,119 @@ in
 {
   imports = [ mango.hmModules.mango ];
 
-  home.pointerCursor = {
-    enable = true;
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
-    size = 32;
-    gtk.enable = true;
-  };
+  home = {
+    packages = with pkgs; [
+      waylock
+      libnotify
+      grim
+    ];
 
-  home.packages = [
-    pkgs.waylock
-    pkgs.libnotify
-    pkgs.grim
-  ];
+    pointerCursor = {
+      enable = true;
 
-  services.mako = {
-    enable = true;
-    settings = {
-      font = "monospace 12";
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+      size = 32;
+      gtk.enable = true;
+    };
 
-      background-color = "#1e1e2eee";
-      text-color = "#cdd6f4";
-      border-color = "#89b4fa";
-
-      border-size = 2;
-      border-radius = 6;
-      padding = "10";
-      margin = "10";
-      max-icon-size = 48;
-      default-timeout = 3000;
-
-      "urgency=low".border-color = "#6c7086";
-      "urgency=high".border-color = "#f38ba8";
+    file."bin/lock" = {
+      executable = true;
+      text = ''
+        #!${pkgs.bash}/bin/bash
+        exec ${pkgs.waylock}/bin/waylock -init-color 0x000000 -input-color 0x000000 -fail-color 0xFF0000
+      '';
     };
   };
 
-  systemd.user.services.battery-watch = {
-    Unit.Description = "Notify on low battery, suspend on critical";
-    Service = {
-      Type = "oneshot";
-      Environment = [
-        "NOTIFY_SEND=${pkgs.libnotify}/bin/notify-send"
-        "SYSTEMCTL=${pkgs.systemd}/bin/systemctl"
-      ];
-      ExecStart = "${batteryWatch}";
+  programs = {
+    waybar = {
+      enable = true;
+
+      style = builtins.readFile ./waybar.css;
+      settings.mainBar = import ./waybar.nix;
+    };
+
+    rofi = {
+      enable = true;
+
+      package = pkgs.rofi;
+      theme = ./rofi-theme.rasi;
+      extraConfig = import ./rofi.nix;
     };
   };
 
-  systemd.user.timers.battery-watch = {
-    Unit.Description = "Run battery-watch every 30s";
-    Timer = {
-      OnBootSec = "30s";
-      OnUnitActiveSec = "30s";
+  services = {
+    mako = {
+      enable = true;
+
+      settings = {
+        font = "monospace 12";
+
+        background-color = "#1e1e2eee";
+        text-color = "#cdd6f4";
+        border-color = "#89b4fa";
+
+        border-size = 2;
+        border-radius = 6;
+        padding = "10";
+        margin = "10";
+        max-icon-size = 48;
+        default-timeout = 3000;
+
+        "urgency=low".border-color = "#6c7086";
+        "urgency=high".border-color = "#f38ba8";
+      };
     };
-    Install.WantedBy = [ "timers.target" ];
+
+    swayidle =
+      let
+        lock = "${config.home.homeDirectory}/bin/lock";
+        dpms = status: "${pkgs.wlopm}/bin/wlopm --${status} '*'";
+      in
+      {
+        enable = true;
+
+        timeouts = [
+          {
+            timeout = 600;
+            command = lock;
+          }
+          {
+            timeout = 600;
+            command = dpms "off";
+            resumeCommand = dpms "on";
+          }
+        ];
+        events = {
+          before-sleep = lock;
+          after-resume = dpms "on";
+        };
+      };
+
+  };
+
+  systemd.user = {
+    services.battery-watch = {
+      Unit.Description = "Notify on low battery, suspend on critical";
+      Service = {
+        Type = "oneshot";
+        Environment = [
+          "NOTIFY_SEND=${pkgs.libnotify}/bin/notify-send"
+          "SYSTEMCTL=${pkgs.systemd}/bin/systemctl"
+        ];
+        ExecStart = "${batteryWatch}";
+      };
+    };
+
+    timers.battery-watch = {
+      Unit.Description = "Run battery-watch every 30s";
+      Timer = {
+        OnBootSec = "30s";
+        OnUnitActiveSec = "30s";
+      };
+      Install.WantedBy = [ "timers.target" ];
+    };
   };
 
   xdg.desktopEntries.discord-wayland = {
@@ -81,16 +140,9 @@ in
     type = "Application";
   };
 
-  home.file."bin/lock" = {
-    executable = true;
-    text = ''
-      #!${pkgs.bash}/bin/bash
-      exec ${pkgs.waylock}/bin/waylock -init-color 0x000000 -input-color 0x000000 -fail-color 0xFF0000
-    '';
-  };
-
   wayland.windowManager.mango = {
     enable = true;
+
     settings = {
       # Window effects
       blur = 0;
@@ -153,7 +205,7 @@ in
       focuscolor = "0x000000ff";
 
       monitorrule = [
-        "name:^eDP-1$,scale:${displayScale}"
+        "name:^eDP-1$,scale:${myconfig.display.scale}"
         "name:^DP-2$,scale:2"
       ];
 
@@ -283,42 +335,4 @@ in
     '';
   };
 
-  programs = {
-    waybar = {
-      enable = true;
-      style = builtins.readFile ./waybar.css;
-      settings.mainBar = import ./waybar.nix;
-    };
-
-    rofi = {
-      enable = true;
-      package = pkgs.rofi;
-      theme = ./rofi-theme.rasi;
-      extraConfig = import ./rofi.nix;
-    };
-  };
-
-  services.swayidle =
-    let
-      lock = "${config.home.homeDirectory}/bin/lock";
-      dpms = status: "${pkgs.wlopm}/bin/wlopm --${status} '*'";
-    in
-    {
-      enable = true;
-      timeouts = [
-        {
-          timeout = 600;
-          command = lock;
-        }
-        {
-          timeout = 600;
-          command = dpms "off";
-          resumeCommand = dpms "on";
-        }
-      ];
-      events = {
-        before-sleep = lock;
-        after-resume = dpms "on";
-      };
-    };
 }

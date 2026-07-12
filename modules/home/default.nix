@@ -11,36 +11,41 @@
 {
   imports = [ home-manager.nixosModules.home-manager ];
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.sharedModules = [ nix-secrets.homeManagerModules.default ];
-  home-manager.extraSpecialArgs = {
-    inherit llm-agents mango shared;
-    isDesktop = config.myconfig.desktop.enable;
-    displayScale = config.myconfig.display.scale;
-  };
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
 
-  home-manager.users.jibi =
-    {
-      isDesktop,
-      displayScale,
-      lib,
-      ...
-    }:
-    {
-      home.stateVersion = "25.05";
-
-      imports = [
-        ./zsh.nix
-        ./ssh.nix
-      ]
-      ++ lib.optionals isDesktop [
-        ./alacritty.nix
-        ./ghostty.nix
-        ./git.nix
-        ./mango
-        ./packages.nix
-        ./vim
-      ];
+    sharedModules = [ nix-secrets.homeManagerModules.default ];
+    extraSpecialArgs = {
+      inherit
+        llm-agents
+        mango
+        shared
+        ;
+      myconfig = config.myconfig;
     };
+
+    users.jibi =
+      {
+        myconfig,
+        lib,
+        ...
+      }:
+      {
+        home.stateVersion = "25.05";
+
+        imports = [
+          ./zsh.nix
+          ./ssh.nix
+        ]
+        ++ lib.optionals myconfig.desktop.enable [
+          ./alacritty.nix
+          ./ghostty.nix
+          ./git.nix
+          ./mango
+          ./packages.nix
+          ./vim
+        ];
+      };
+  };
 }

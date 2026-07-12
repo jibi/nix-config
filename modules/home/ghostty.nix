@@ -3,6 +3,7 @@
 {
   programs.ghostty = {
     enable = true;
+
     settings = {
       background = "#000000";
       foreground = "#eaeaea";

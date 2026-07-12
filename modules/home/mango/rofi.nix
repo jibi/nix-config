@@ -4,5 +4,5 @@
   bw = 0;
   display-drun = "";
   drun-display-format = "{name}";
-  terminal = "alacritty";
+  terminal = "ghostty";
 }
