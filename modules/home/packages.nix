@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  llm-agents,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -13,7 +18,7 @@
     btrfs-progs
     cpufrequtils
     ccache
-    llm-agents.claude-code
+    llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     cmake
     diceware
     difftastic

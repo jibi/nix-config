@@ -1,3 +1,3 @@
 # Jibi NixOS config
 
-Just my WIP NixOS config
+Just my NixOS config

@@ -20,7 +20,7 @@ lib.mkIf config.myconfig.desktop.enable {
 
     displayManager = {
       gdm.enable = true;
-      sessionPackages = [ pkgs.mangowc ];
+      sessionPackages = [ pkgs.mango ];
 
       autoLogin = {
         enable = true;

@@ -47,12 +47,12 @@
       specialArgs = {
         inherit
           bisca
-          llm-agents
           home-manager
+          llm-agents
           mango
-          nix-secrets
           nixpkgs
           nixpkgs-rpi-kernel
+          nix-secrets
           ;
       };
       mkHost =

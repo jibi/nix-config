@@ -1,5 +1,6 @@
 {
   config,
+  llm-agents,
   mango,
   nix-secrets,
   home-manager,
@@ -14,7 +15,7 @@
   home-manager.useUserPackages = true;
   home-manager.sharedModules = [ nix-secrets.homeManagerModules.default ];
   home-manager.extraSpecialArgs = {
-    inherit mango shared;
+    inherit llm-agents mango shared;
     isDesktop = config.myconfig.desktop.enable;
     displayScale = config.myconfig.display.scale;
   };

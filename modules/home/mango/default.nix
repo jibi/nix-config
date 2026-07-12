@@ -13,6 +13,7 @@ in
   imports = [ mango.hmModules.mango ];
 
   home.pointerCursor = {
+    enable = true;
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
     size = 32;
