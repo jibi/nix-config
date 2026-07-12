@@ -41,6 +41,18 @@ in
     waybar = {
       enable = true;
 
+      package = (pkgs.waybar.override { cavaSupport = false; }).overrideAttrs (old: {
+        version = "0.15.0-unstable-2026-07-12";
+        src = pkgs.fetchFromGitHub {
+          owner = "Alexays";
+          repo = "Waybar";
+          rev = "cf19c836d3dafc1646bb60a49269d981623b680a";
+          hash = "sha256-h1ZmLmqBkm3MyShV6p83kBtpeLa9rnZUVz75kp+0Ccw=";
+        };
+        buildInputs = old.buildInputs ++ [ pkgs.modemmanager ];
+        doInstallCheck = false;
+      });
+
       style = builtins.readFile ./waybar.css;
       settings.mainBar = import ./waybar.nix;
     };

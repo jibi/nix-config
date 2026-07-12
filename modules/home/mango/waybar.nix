@@ -9,11 +9,12 @@
   margin = "0";
 
   modules-left = [
-    "dwl/tags"
+    "mango/workspaces"
     "wlr/taskbar"
   ];
   modules-center = [
-    "dwl/window"
+    "mango/layout"
+    "mango/window"
   ];
   modules-right = [
     "battery"
@@ -22,15 +23,14 @@
     "clock"
   ];
 
-  "dwl/tags" = {
-    num-tags = 9;
-    hide-vacant = true;
-    expand = false;
-    disable-click = true;
-    tag-labels = [ ];
+  "mango/workspaces" = {
+    hide-empty = true;
   };
-  "dwl/window" = {
-    format = "[{layout}] {title}";
+  "mango/layout" = {
+    format = "[{}]";
+  };
+  "mango/window" = {
+    format = "{}";
     max-length = 64;
     rewrite = {
       " \\| " = "";
