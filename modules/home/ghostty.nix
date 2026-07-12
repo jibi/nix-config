@@ -29,6 +29,8 @@
 
       cursor-color = "#002fd7";
       cursor-text = "#000000";
+      cursor-style-blink = false;
+      shell-integration-features = "no-cursor";
 
       font-family = "DejaVuSansM Nerd Font Mono";
       font-style-bold = false;
