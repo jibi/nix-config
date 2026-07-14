@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   mango,
   myconfig,
@@ -8,7 +7,48 @@
 }:
 
 let
-  batteryWatch = pkgs.writers.writeRuby "battery-watch" { } (builtins.readFile ./battery-watch.rb);
+
+  lock = "${homeBin}/lock";
+
+  lockScript = pkgs.writeShellScript "lock" ''
+    exec ${pkgs.waylock}/bin/waylock -init-color 0x000000 -input-color 0x000000 -fail-color 0xFF0000
+  '';
+
+  wlrRandr = "${pkgs.wlr-randr}/bin/wlr-randr";
+
+  intMonitorScript = pkgs.writeShellScript "int" ''
+    set -e
+    ${wlrRandr} --output DP-2 --mode 1920x1080@60Hz
+    ${wlrRandr} --output eDP-1 --on
+    ${wlrRandr} --output DP-2 --off
+  '';
+  extMonitorScript = pkgs.writeShellScript "ext" ''
+    set -e
+    ${wlrRandr} --output eDP-1 --off
+    ${wlrRandr} --output DP-2 --on
+  '';
+
+  batteryWatchSCript = pkgs.writers.writeRuby "battery-watch" { } ''
+    def notify_send(*args) = system(ENV.fetch("NOTIFY_SEND"), "-u", "critical", *args)
+
+    warned_file = File.join(ENV.fetch("XDG_RUNTIME_DIR"), "battery-watch-warned")
+    sys_bat = "/sys/class/power_supply/BAT0"
+
+    if File.read(File.join(sys_bat, "/status")).strip != "Discharging"
+      File.unlink(warned_file) if File.exist?(warned_file)
+      exit
+    end
+
+    cap = File.read(File.join(sys_bat, "/capacity")).to_i
+    if cap <= 3
+      notify_send "Battery drained", "suspending."
+      sleep 2
+      system(ENV.fetch("SYSTEMCTL"), "suspend")
+    elsif cap <= 10 && !File.exist?(warned_file)
+      notify_send "Battery low", "#{cap}%"
+      File.write(warned_file, "")
+    end
+  '';
 in
 {
   imports = [ mango.hmModules.mango ];
@@ -29,9 +69,11 @@ in
       gtk.enable = true;
     };
 
-    file."${homeBin}/lock".source = pkgs.writeShellScript "lock" ''
-      exec ${pkgs.waylock}/bin/waylock -init-color 0x000000 -input-color 0x000000 -fail-color 0xFF0000
-    '';
+    file = {
+      "${lock}".source = lockScript;
+      "${homeBin}/int".source = intMonitorScript;
+      "${homeBin}/ext".source = extMonitorScript;
+    };
   };
 
   programs = {
@@ -88,7 +130,6 @@ in
 
     swayidle =
       let
-        lock = "${config.home.homeDirectory}/bin/lock";
         dpms = status: "${pkgs.wlopm}/bin/wlopm --${status} '*'";
       in
       {
@@ -122,7 +163,7 @@ in
           "NOTIFY_SEND=${pkgs.libnotify}/bin/notify-send"
           "SYSTEMCTL=${pkgs.systemd}/bin/systemctl"
         ];
-        ExecStart = "${batteryWatch}";
+        ExecStart = "${batteryWatchSCript}";
       };
     };
 
@@ -319,7 +360,7 @@ in
         "ALT,b,spawn,pkill --signal USR1 waybar"
 
         # Lock screen
-        "ALT+CTRL,s,spawn,/home/jibi/bin/lock"
+        "ALT+CTRL,s,spawn,${lock}"
 
         # Volume/Brightness
         "NONE,XF86AudioRaiseVolume,spawn,pactl set-sink-volume @DEFAULT_SINK@ +2500"
@@ -343,5 +384,4 @@ in
       systemctl --user start swayidle
     '';
   };
-
 }
