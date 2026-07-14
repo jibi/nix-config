@@ -1,4 +1,4 @@
-{ ... }:
+{ homeBin, ... }:
 
 {
   programs.zsh = {
@@ -23,7 +23,7 @@
     };
 
     envExtra = ''
-      export PATH="$HOME/bin:$PATH"
+      export PATH="$HOME/${homeBin}:$PATH"
     '';
 
     initContent = ''

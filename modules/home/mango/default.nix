@@ -3,6 +3,7 @@
   pkgs,
   mango,
   myconfig,
+  homeBin,
   ...
 }:
 
@@ -28,7 +29,7 @@ in
       gtk.enable = true;
     };
 
-    file."bin/lock".source = pkgs.writeShellScript "lock" ''
+    file."${homeBin}/lock".source = pkgs.writeShellScript "lock" ''
       exec ${pkgs.waylock}/bin/waylock -init-color 0x000000 -input-color 0x000000 -fail-color 0xFF0000
     '';
   };
