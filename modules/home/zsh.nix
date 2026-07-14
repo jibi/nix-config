@@ -14,7 +14,7 @@
     shellAliases = {
       vim = "nvim";
       deploy-rpi = "nixos-rebuild switch --flake .#rpi --target-host rpi --sudo";
-      int = "wlr-randr --output DP-2 --off --output eDP-1 --on";
+      int = "wlr-randr --output DP-2 --mode 1920x1080@60Hz && wlr-randr --output eDP-1 --on && wlr-randr --output DP-2 --off";
       ext = "wlr-randr --output eDP-1 --off --output DP-2 --on";
     };
 
