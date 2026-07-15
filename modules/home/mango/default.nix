@@ -18,9 +18,8 @@ let
 
   intMonitorScript = pkgs.writeShellScript "int" ''
     set -e
-    ${wlrRandr} --output DP-2 --mode 1920x1080@60Hz
-    ${wlrRandr} --output eDP-1 --on
     ${wlrRandr} --output DP-2 --off
+    ${wlrRandr} --output eDP-1 --on
   '';
   extMonitorScript = pkgs.writeShellScript "ext" ''
     set -e
