@@ -4,6 +4,7 @@
   mango,
   nix-secrets,
   home-manager,
+  rust-overlay,
   shared,
   ...
 }:
@@ -20,6 +21,7 @@
       inherit
         llm-agents
         mango
+        rust-overlay
         shared
         ;
       myconfig = config.myconfig;

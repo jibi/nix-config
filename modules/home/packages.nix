@@ -2,9 +2,14 @@
   lib,
   pkgs,
   llm-agents,
+  rust-overlay,
   ...
 }:
 
+let
+  llmAgentsPkgs = llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+  rustPkgs = pkgs.extend rust-overlay.overlays.default;
+in
 {
   home.packages = with pkgs; [
     acpi
@@ -18,7 +23,7 @@
     btrfs-progs
     cpufrequtils
     ccache
-    llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
+    llmAgentsPkgs.claude-code
     cmake
     diceware
     difftastic
@@ -63,7 +68,7 @@
     qpdf
     redshift
     ruby
-    rustup
+    rustPkgs.rust-bin.nightly.latest.default
     scrot
     signal-desktop
     sqlite

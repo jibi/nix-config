@@ -28,6 +28,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -41,6 +45,7 @@
       nix-secrets,
       disko,
       nixos-facter-modules,
+      rust-overlay,
       ...
     }:
     let
@@ -53,6 +58,7 @@
           nixpkgs
           nixpkgs-rpi-kernel
           nix-secrets
+          rust-overlay
           ;
       };
       mkHost =
