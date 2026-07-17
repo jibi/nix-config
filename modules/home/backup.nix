@@ -49,4 +49,13 @@ in
     "${homeBin}/umount-luks".source = umountLuks;
     "${homeBin}/do-backup".source = doBackup;
   };
+
+  programs.zsh.initContent = ''
+    _luks_volumes() {
+      local -a volumes
+      volumes=(''${(f)"$(grep -v '^#' /etc/crypttab | awk 'NF {print $1}')"})
+      compadd -a volumes
+    }
+    compdef _luks_volumes mount-luks umount-luks do-backup
+  '';
 }
