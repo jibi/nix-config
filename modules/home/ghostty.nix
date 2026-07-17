@@ -40,6 +40,7 @@
 
       background-opacity = 0.6;
 
+      confirm-close-surface = false;
       resize-overlay = "never";
       window-inherit-working-directory = false;
       scrollbar = "never";
