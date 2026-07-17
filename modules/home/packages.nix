@@ -35,7 +35,6 @@ in
     evince
     ffmpeg
     firefox
-    gammastep
     gcc
     gcc-arm-embedded
     gedit
@@ -67,7 +66,6 @@ in
     python3
     qmk
     qpdf
-    redshift
     ruby
     rustPkgs.rust-bin.nightly.latest.default
     scrot
@@ -84,4 +82,12 @@ in
     xsecurelock
     zola
   ];
+
+  services.gammastep = {
+    enable = true;
+    latitude = 46.4983;
+    longitude = 11.3548;
+    temperature.night = 2200;
+    tray = true;
+  };
 }
