@@ -23,8 +23,9 @@ let
   '';
   extMonitorScript = pkgs.writeShellScript "ext" ''
     set -e
+    ${wlrRandr} --output DP-2 --on --mode 1920x1080@60Hz
     ${wlrRandr} --output eDP-1 --off
-    ${wlrRandr} --output DP-2 --on
+    ${wlrRandr} --output DP-2 --mode 3840x2160@30Hz --scale 2
   '';
 
   batteryWatchSCript = pkgs.writers.writeRuby "battery-watch" { } ''
