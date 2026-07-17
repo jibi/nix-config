@@ -21,7 +21,7 @@ in
     automake
     brightnessctl
     btrfs-progs
-    cpufrequtils
+    linuxPackages.cpupower
     ccache
     llmAgentsPkgs.claude-code
     cargo-expand
