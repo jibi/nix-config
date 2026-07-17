@@ -24,6 +24,7 @@ in
     cpufrequtils
     ccache
     llmAgentsPkgs.claude-code
+    cargo-expand
     cmake
     diceware
     difftastic
