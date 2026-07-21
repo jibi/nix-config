@@ -4,11 +4,12 @@
   lib,
   pkgs,
   nixpkgs-rpi-kernel,
+  self,
   ...
 }:
 
 let
-  buildSystem = pkgs.stdenv.buildPlatform.system;
+  buildSystem = self.nixosConfigurations.xps.pkgs.stdenv.hostPlatform.system;
   system = pkgs.stdenv.hostPlatform.system;
 
   crossPkgs = import bisca.inputs.nixpkgs {

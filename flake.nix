@@ -36,6 +36,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       nixpkgs-rpi-kernel,
       home-manager,
@@ -59,6 +60,7 @@
           nixpkgs-rpi-kernel
           nix-secrets
           rust-overlay
+          self
           ;
       };
       mkHost =
