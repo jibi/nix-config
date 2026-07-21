@@ -44,7 +44,6 @@ in
     gparted
     hsetroot
     imagemagick
-    jmtpfs
     jujutsu
     libmtp
     libreoffice
