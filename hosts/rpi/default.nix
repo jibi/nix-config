@@ -3,7 +3,6 @@
   bisca,
   lib,
   pkgs,
-  nixpkgs-rpi-kernel,
   self,
   ...
 }:
@@ -17,8 +16,6 @@ let
     crossSystem = system;
     overlays = [ bisca.overlays.default ];
   };
-
-  rpiPkgs = nixpkgs-rpi-kernel.legacyPackages.${system};
 in
 {
   imports = [
@@ -30,7 +27,7 @@ in
   nix.settings.trusted-users = [ "jibi" ];
 
   boot = {
-    kernelPackages = lib.mkForce rpiPkgs.linuxPackages_rpi02w;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     initrd.systemd.tpm2.enable = false;
     initrd.availableKernelModules = lib.mkMerge [
       [

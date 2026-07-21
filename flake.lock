@@ -368,22 +368,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-rpi-kernel": {
-      "locked": {
-        "lastModified": 1775581907,
-        "narHash": "sha256-aIBIBBLKFTG9rcdha98TLC5HiYjjOyBAPVl9JDiX3DM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "77bb0683a4d1cd66d08ccfe62a851e1068fbd23a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "77bb0683a4d1cd66d08ccfe62a851e1068fbd23a",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1784356753,
@@ -410,7 +394,6 @@
         "nix-secrets": "nix-secrets",
         "nixos-facter-modules": "nixos-facter-modules",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-rpi-kernel": "nixpkgs-rpi-kernel",
         "rust-overlay": "rust-overlay"
       }
     },
