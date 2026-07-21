@@ -29,6 +29,7 @@
       tcpdump
       unzip
       zsh
+      ghostty.terminfo
     ])
     ++ lib.optionals config.myconfig.desktop.enable (
       with pkgs;
