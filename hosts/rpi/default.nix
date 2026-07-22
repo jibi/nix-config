@@ -11,7 +11,7 @@ let
   buildSystem = self.nixosConfigurations.xps.pkgs.stdenv.hostPlatform.system;
   system = pkgs.stdenv.hostPlatform.system;
 
-  crossPkgs = import bisca.inputs.nixpkgs {
+  biscaCrossPkgs = import bisca.inputs.nixpkgs {
     localSystem = buildSystem;
     crossSystem = system;
     overlays = [ bisca.overlays.default ];
@@ -27,32 +27,42 @@ in
   nix.settings.trusted-users = [ "jibi" ];
 
   boot = {
-    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-    initrd.systemd.tpm2.enable = false;
-    initrd.availableKernelModules = lib.mkMerge [
-      [
-        "xhci_pci"
-        "usbhid"
-        "usb_storage"
-      ]
-      {
-        # todo: remove this when this is fixed: https://github.com/NixOS/nixpkgs/issues/154163
-        dw-hdmi = lib.mkForce false;
-        dw-mipi-dsi = lib.mkForce false;
-        rockchipdrm = lib.mkForce false;
-        rockchip-rga = lib.mkForce false;
-        phy-rockchip-pcie = lib.mkForce false;
-        pcie-rockchip-host = lib.mkForce false;
-        pwm-sun4i = lib.mkForce false;
-        sun4i-drm = lib.mkForce false;
-        sun8i-mixer = lib.mkForce false;
-      }
-    ];
-
     loader = {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
     };
+
+    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+
+    initrd = {
+      systemd.tpm2.enable = false;
+      availableKernelModules = lib.mkMerge [
+        [
+          "xhci_pci"
+          "usbhid"
+          "usb_storage"
+        ]
+        {
+          # todo: remove this when this is fixed: https://github.com/NixOS/nixpkgs/issues/154163
+          dw-hdmi = lib.mkForce false;
+          dw-mipi-dsi = lib.mkForce false;
+          rockchipdrm = lib.mkForce false;
+          rockchip-rga = lib.mkForce false;
+          phy-rockchip-pcie = lib.mkForce false;
+          pcie-rockchip-host = lib.mkForce false;
+          pwm-sun4i = lib.mkForce false;
+          sun4i-drm = lib.mkForce false;
+          sun8i-mixer = lib.mkForce false;
+        }
+      ];
+    };
+
+    blacklistedKernelModules = [
+      "bluetooth"
+      "hci_uart"
+      "btbcm"
+      "btqca"
+    ];
 
     swraid.enable = lib.mkForce false;
     supportedFilesystems.zfs = lib.mkForce false;
@@ -76,12 +86,13 @@ in
   myconfig.wifi.backend = "wpa_supplicant";
 
   networking = {
+    hostName = "rpi";
+    wireless.interfaces = [ "wlan0" ];
+
     firewall.allowedTCPPorts = [
       80
       443
     ];
-    hostName = "rpi";
-    wireless.interfaces = [ "wlan0" ];
   };
 
   services = {
@@ -92,13 +103,15 @@ in
 
     bisca = {
       enable = true;
-      backend.package = crossPkgs.bisca-backend;
+      backend.package = biscaCrossPkgs.bisca-backend;
     };
 
     umami = {
       enable = true;
-      settings.PORT = 3001;
-      settings.APP_SECRET_FILE = config.age.secrets.umami-secret.path;
+      settings = {
+        PORT = 3001;
+        APP_SECRET_FILE = config.age.secrets.umami-secret.path;
+      };
     };
 
     caddy.virtualHosts."stats.jibi.io" = {
