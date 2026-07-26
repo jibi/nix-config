@@ -62,6 +62,8 @@ in
       "hci_uart"
       "btbcm"
       "btqca"
+      "vc4"
+      "snd_bcm2835"
     ];
 
     swraid.enable = lib.mkForce false;
