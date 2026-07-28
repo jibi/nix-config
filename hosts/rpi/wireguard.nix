@@ -20,6 +20,7 @@ in
     firewall = {
       allowedUDPPorts = [ wg.port ];
       checkReversePath = "loose";
+      trustedInterfaces = [ "wg0" ];
     };
 
     wireguard.interfaces.wg0 = {
