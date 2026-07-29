@@ -58,6 +58,7 @@ in
     nixos-anywhere
     nodejs
     ollama
+    llmAgentsPkgs.opencode
     pass
     pavucontrol
     pkg-config
