@@ -35,7 +35,7 @@
 
       font-family = "DejaVuSansM Nerd Font Mono";
       font-style-bold = false;
-      font-size = 14;
+      font-size = 13;
       adjust-cell-width = -4;
 
       background-opacity = 0.6;
