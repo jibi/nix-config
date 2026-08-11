@@ -73,6 +73,7 @@ in
     sqlite
     swaybg
     trace-cmd
+    vial
     vlc
     websocat
     wlr-randr
