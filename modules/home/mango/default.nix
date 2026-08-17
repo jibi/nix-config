@@ -241,7 +241,7 @@ in
       drag_lock = 1;
       trackpad_natural_scrolling = 0;
       axis_scroll_factor = 0.5;
-      disable_while_typing = 1;
+      trackpad_disable_while_typing = 1;
       trackpad_accel_speed = -0.2;
 
       # Appearance
