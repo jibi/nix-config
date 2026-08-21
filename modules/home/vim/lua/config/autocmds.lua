@@ -73,3 +73,14 @@ vim.api.nvim_create_autocmd("FileType", {
     end, {})
   end,
 })
+
+local prose_textwidth = vim.api.nvim_create_augroup("prose_textwidth", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = prose_textwidth,
+  pattern = { "gitcommit", "text" },
+  callback = function(event)
+    vim.opt_local.textwidth = event.match == "gitcommit" and 72 or 80
+    vim.opt_local.formatexpr = ""
+  end,
+})
