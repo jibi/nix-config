@@ -23,7 +23,7 @@ in
     btrfs-progs
     linuxPackages.cpupower
     ccache
-    llmAgentsPkgs.claude-code
+    llmAgentsPkgs.codex
     cargo-expand
     cmake
     diceware
