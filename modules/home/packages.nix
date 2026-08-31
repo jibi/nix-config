@@ -40,6 +40,7 @@ in
     gedit
     ghc
     gimp
+    google-chrome
     gnumake
     gparted
     hsetroot
