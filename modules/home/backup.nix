@@ -38,7 +38,7 @@ let
     mount_path="/mnt/$name"
 
     ${mountLuks} "$name"
-    sudo rsync -aAXv --delete --delete-excluded --exclude-from=/home/jibi/.rsync-exclude /home/jibi/ "$mount_path/current/home/jibi/"
+    sudo rsync -aAXv --delete --delete-excluded --exclude-from=- /home/jibi/ "$mount_path/current/home/jibi/" < /home/jibi/.rsync-exclude
     sudo btrfs subvolume snapshot "$mount_path/current" "$mount_path/snapshots/$(date "+%Y_%m_%d")"
     ${umountLuks} "$name"
   '';
