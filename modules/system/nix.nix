@@ -22,6 +22,8 @@
 
       auto-allocate-uids = true;
       use-cgroups = true;
+
+      warn-dirty = false;
     };
 
     gc = {
