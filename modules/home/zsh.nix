@@ -26,6 +26,18 @@
 
     initContent = ''
       setopt NO_HUP
+
+      OLD_PROMPT=$PROMPT
+      function nix_dev_shell_prompt() {
+        if [[ -n "$NIX_DEV_SHELL" ]]; then
+          PROMPT="%F{#5277C3}%f $OLD_PROMPT"
+        else
+          PROMPT=$OLD_PROMPT
+        fi
+      }
+      autoload -Uz add-zsh-hook
+      add-zsh-hook precmd nix_dev_shell_prompt
+
       function claude() {
         command claude "$@"; printf '\e[>0u'
       }
