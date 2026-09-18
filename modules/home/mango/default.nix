@@ -101,7 +101,7 @@ in
 
       package = pkgs.rofi;
       theme = ./rofi-theme.rasi;
-      extraConfig = import ./rofi.nix;
+      settings = import ./rofi.nix;
     };
   };
 
