@@ -32,11 +32,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778668913,
-        "narHash": "sha256-vpGW0iXNxOcwaPZnUSz00XmprDSXmY4H2Z9wBfrhxO4=",
+        "lastModified": 1789991956,
+        "narHash": "sha256-cnTa3bj7rKFAOlnR18R8EZMQapbmZ9QKaqu5CR0VbxM=",
         "ref": "refs/heads/master",
-        "rev": "babbd138b30fb1123fce9eb8ace2d4010e17a36b",
-        "revCount": 229,
+        "rev": "fdaeb7573b09822b9a3b2062357f82246beb5080",
+        "revCount": 231,
         "type": "git",
         "url": "ssh://git@github.com/jibi/bisca"
       },
