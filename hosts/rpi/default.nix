@@ -32,7 +32,7 @@ in
       generic-extlinux-compatible.enable = true;
     };
 
-    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+    kernelPackages = lib.mkForce pkgs.linuxPackages;
 
     initrd = {
       systemd.tpm2.enable = false;
