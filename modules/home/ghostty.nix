@@ -45,7 +45,7 @@
       window-inherit-working-directory = false;
       scrollbar = "never";
 
-      scrollback-limit = 1000000;
+      scrollback-limit = 10000000;
 
       keybind = [ "shift+enter=csi:13;2u" ];
     };
