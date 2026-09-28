@@ -79,5 +79,10 @@
     ];
   };
 
+  programs.nh = {
+    enable = true;
+    flake = "/home/jibi/nix-config";
+  };
+
   system.stateVersion = "26.11";
 }
