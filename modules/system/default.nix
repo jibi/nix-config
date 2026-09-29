@@ -11,7 +11,7 @@
     ./networking.nix
     ./users.nix
     ./packages.nix
-    ./xserver.nix
+    ./desktop.nix
     ./hardware.nix
     ./cuda.nix
   ];

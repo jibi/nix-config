@@ -7,31 +7,21 @@
 
 lib.mkIf config.myconfig.desktop.enable {
   services = {
-    xserver = {
-      enable = true;
-
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-    };
-
     libinput.touchpad.tapping = false;
 
-    displayManager = {
-      gdm.enable = true;
-      sessionPackages = [ pkgs.mango ];
+    greetd = {
+      enable = true;
 
-      autoLogin = {
-        enable = true;
-        user = "jibi";
+      settings = rec {
+        initial_session = {
+          command = "mango";
+          user = "jibi";
+        };
+
+        default_session = initial_session;
       };
     };
   };
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
 
   fonts = {
     enableDefaultPackages = true;

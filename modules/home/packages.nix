@@ -39,7 +39,6 @@ in
     google-chrome
     gnumake
     gparted
-    hsetroot
     imagemagick
     jujutsu
     libmtp
@@ -62,7 +61,6 @@ in
     qpdf
     ruby
     rustPkgs.rust-bin.nightly.latest.default
-    scrot
     signal-desktop
     sqlite
     swaybg
@@ -71,10 +69,6 @@ in
     vlc
     websocat
     wlr-randr
-    xbindkeys
-    xmodmap
-    xrandr
-    xsecurelock
     zola
   ];
 

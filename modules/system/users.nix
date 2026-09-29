@@ -14,11 +14,7 @@
       "wheel"
     ]
     ++ lib.optionals config.virtualisation.docker.enable [ "docker" ]
-    ++ lib.optionals config.virtualisation.libvirtd.enable [ "libvirtd" ]
-    ++ lib.optionals config.services.xserver.enable [
-      "plugdev"
-      "video"
-    ];
+    ++ lib.optionals config.virtualisation.libvirtd.enable [ "libvirtd" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ shared.sshPubKey ];
   };
