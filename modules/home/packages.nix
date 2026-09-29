@@ -14,7 +14,6 @@ in
   home.packages = with pkgs; [
     acpi
     adwaita-icon-theme
-    aerc
     appimage-run
     audacity
     autoconf
@@ -22,7 +21,6 @@ in
     brightnessctl
     btrfs-progs
     linuxPackages.cpupower
-    ccache
     llmAgentsPkgs.codex
     cargo-expand
     cmake
@@ -30,13 +28,11 @@ in
     difftastic
     discord
     dnsutils
-    docker-compose
     eog
     evince
     ffmpeg
     firefox
     gcc
-    gcc-arm-embedded
     gedit
     ghc
     gimp
@@ -51,14 +47,11 @@ in
     libtool
     linuxHeaders
     (lib.hiPrio llvmPackages.clang)
-    marker
     marp-cli
     mgba
     nautilus
     networkmanagerapplet
     nixos-anywhere
-    nodejs
-    ollama
     llmAgentsPkgs.opencode
     pass
     pavucontrol
