@@ -1,9 +1,7 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   nix = {
-    package = pkgs.lix;
-
     settings = {
       system-features = [
         "uid-range"
