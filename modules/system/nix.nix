@@ -16,10 +16,6 @@
         "nix-command"
       ];
 
-      extra-deprecated-features = [
-        "broken-string-escape"
-      ];
-
       auto-allocate-uids = true;
       use-cgroups = true;
 
