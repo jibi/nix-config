@@ -6,6 +6,11 @@
 }:
 
 lib.mkIf config.myconfig.desktop.enable {
+  programs = {
+    mango.enable = true;
+    virt-manager.enable = true;
+  };
+
   services = {
     libinput.touchpad.tapping = false;
 
@@ -21,6 +26,33 @@ lib.mkIf config.myconfig.desktop.enable {
         default_session = initial_session;
       };
     };
+
+    printing = {
+      enable = true;
+
+      drivers = with pkgs; [
+        samsung-unified-linux-driver
+      ];
+    };
+
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+    };
+
+    udisks2.enable = true;
+    gvfs.enable = true;
+
+    blueman.enable = true;
+  };
+
+  security = {
+    rtkit.enable = true;
+    pam.services.waylock = { };
   };
 
   fonts = {

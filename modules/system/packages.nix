@@ -6,10 +6,6 @@
 }:
 
 {
-  imports = [
-    ./desktop-packages.nix
-  ];
-
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages =
