@@ -22,6 +22,7 @@
       psmisc
       ripgrep
       tcpdump
+      usbutils
       unzip
       zsh
       ghostty.terminfo
