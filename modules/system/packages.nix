@@ -13,7 +13,6 @@
       bash
       curl
       dnsmasq
-      android-tools
       file
       htop
       jq
@@ -30,8 +29,6 @@
     ++ lib.optionals config.myconfig.desktop.enable (
       with pkgs;
       [
-        bpftools
-        bpftrace
         gdb
         wireshark
       ]

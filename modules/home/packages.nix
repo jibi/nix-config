@@ -1,14 +1,11 @@
 {
-  lib,
   pkgs,
   llm-agents,
-  rust-overlay,
   ...
 }:
 
 let
   llmAgentsPkgs = llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
-  rustPkgs = pkgs.extend rust-overlay.overlays.default;
 in
 {
   home.packages = with pkgs; [
@@ -16,14 +13,10 @@ in
     adwaita-icon-theme
     appimage-run
     audacity
-    autoconf
-    automake
     brightnessctl
     btrfs-progs
     linuxPackages.cpupower
     llmAgentsPkgs.codex
-    cargo-expand
-    cmake
     diceware
     difftastic
     discord
@@ -32,20 +25,14 @@ in
     evince
     ffmpeg
     firefox
-    gcc
     gedit
-    ghc
     gimp
     google-chrome
-    gnumake
     gparted
     imagemagick
     jujutsu
     libmtp
     libreoffice
-    libtool
-    linuxHeaders
-    (lib.hiPrio llvmPackages.clang)
     marp-cli
     mgba
     nautilus
@@ -54,13 +41,9 @@ in
     llmAgentsPkgs.opencode
     pass
     pavucontrol
-    pkg-config
     pulseaudio
-    python3
-    qmk
     qpdf
     ruby
-    rustPkgs.rust-bin.nightly.latest.default
     signal-desktop
     sqlite
     swaybg
