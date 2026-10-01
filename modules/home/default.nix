@@ -42,7 +42,6 @@
           ./ssh.nix
         ]
         ++ lib.optionals myconfig.desktop.enable [
-          ./alacritty.nix
           ./backup.nix
           ./ghostty.nix
           ./git.nix
