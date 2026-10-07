@@ -216,17 +216,17 @@ in
 
       # Master-Stack Layout
       new_is_master = 0;
-      default_mfact = 0.50;
-      default_nmaster = 1;
-      smartgaps = 0;
+      default_master_factor = 0.50;
+      default_master_count = 1;
+      smart_gaps = 0;
 
       # Overview
       hotarea_size = 0;
       enable_hotarea = 0;
 
       # Misc
-      sloppyfocus = 0;
-      warpcursor = 0;
+      sloppy_focus = 0;
+      warp_cursor = 0;
       cursor_size = 32;
       focus_on_activate = 0;
 
@@ -245,21 +245,21 @@ in
       trackpad_accel_speed = -0.2;
 
       # Appearance
-      gappih = 0;
-      gappiv = 0;
-      gappoh = 0;
-      gappov = 0;
-      borderpx = 0;
-      rootcolor = "0x000000ff";
-      bordercolor = "0x000000ff";
-      focuscolor = "0x000000ff";
+      gap_inner_horizontal = 0;
+      gap_inner_vertical = 0;
+      gap_outer_horizontal = 0;
+      gap_outer_vertical = 0;
+      border_px = 0;
+      root_color = "0x000000ff";
+      border_color = "0x000000ff";
+      focus_color = "0x000000ff";
 
-      monitorrule = [
+      monitor_rule = [
         "name:^eDP-1$,scale:${myconfig.display.scale}"
         "name:^DP-2$,scale:2"
       ];
 
-      tagrule = [
+      tag_rule = [
         "id:1,layout_name:tile"
         "id:2,layout_name:monocle"
         "id:3,layout_name:tile"
