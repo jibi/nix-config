@@ -15,6 +15,7 @@ in
     audacity
     brightnessctl
     btrfs-progs
+    bubblewrap
     linuxPackages.cpupower
     llmAgentsPkgs.codex
     diceware
