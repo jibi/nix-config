@@ -9,6 +9,15 @@ lib.mkIf config.myconfig.cuda.enable {
   specialisation.cuda.configuration = {
     system.nixos.label = "nixos-cuda";
 
+    nix.settings = {
+      substituters = [
+        "https://cache.nixos-cuda.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+      ];
+    };
+
     nixpkgs.config.allowBroken = true;
 
     hardware = {
@@ -36,21 +45,23 @@ lib.mkIf config.myconfig.cuda.enable {
       "nvidia"
     ];
 
-    environment.systemPackages = with pkgs; [ cudatoolkit ];
+    environment = {
+      systemPackages = with pkgs; [ cudatoolkit ];
 
-    environment.sessionVariables =
-      let
-        cuda = pkgs.cudatoolkit;
-        nvidia = config.hardware.nvidia.package;
-        fmtdev = pkgs.fmt.dev;
-      in
-      {
-        LD_LIBRARY_PATH = "${cuda}/lib:${nvidia}/lib";
-        CUDA_PATH = "${cuda}";
-        EXTRA_LDFLAGS = "-L${nvidia}/lib";
-        EXTRA_CCFLAGS = "-I/usr/include";
-        CMAKE_PREFIX_PATH = "${fmtdev}";
-        PKG_CONFIG_PATH = "${fmtdev}/lib/pkgconfig";
-      };
+      sessionVariables =
+        let
+          cuda = pkgs.cudatoolkit;
+          nvidia = config.hardware.nvidia.package;
+          fmtdev = pkgs.fmt.dev;
+        in
+        {
+          LD_LIBRARY_PATH = "${cuda}/lib:${nvidia}/lib";
+          CUDA_PATH = "${cuda}";
+          EXTRA_LDFLAGS = "-L${nvidia}/lib";
+          EXTRA_CCFLAGS = "-I/usr/include";
+          CMAKE_PREFIX_PATH = "${fmtdev}";
+          PKG_CONFIG_PATH = "${fmtdev}/lib/pkgconfig";
+        };
+    };
   };
 }
