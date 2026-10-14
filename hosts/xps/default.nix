@@ -10,7 +10,10 @@
     desktop.enable = true;
     display.scale = "2.5";
     wifi.backend = "nm";
-    cuda.enable = false;
+    cuda = {
+      enable = false;
+      passthrough = true;
+    };
     virtualisation.enable = false;
   };
 
