@@ -53,8 +53,6 @@
       # sh
       shfmt
 
-      # Dictionary
-      scowl
     ];
 
     # Only lazy-nvim itself is loaded as a Neovim plugin.
@@ -87,7 +85,6 @@
         # as its dev.path (see below).
         plugins = with pkgs.vimPlugins; [
           blink-cmp
-          blink-cmp-dictionary
           bufferline-nvim
           conform-nvim
           flash-nvim
@@ -207,7 +204,6 @@
         })
 
         vim.g.snacks_animate = false
-        vim.g.dictionary_file = "${pkgs.scowl}/share/dict/words.txt"
       '';
   };
 

@@ -72,20 +72,18 @@ return {
 
   {
     "saghen/blink.cmp",
-    dependencies = { "Kaiser-Yang/blink-cmp-dictionary" },
+    opts_extend = {}, -- Replace source lists instead of extending LazyVim's defaults.
     opts = {
       sources = {
-        default = { "dictionary", "lsp", "path", "snippets", "buffer" },
-        providers = {
-          dictionary = {
-            module = "blink-cmp-dictionary",
-            name = "Dict",
-            min_keyword_length = 3,
-            opts = {
-              dictionary_files = { vim.g.dictionary_file },
-            },
-          },
-        },
+        default = { "lsp", "path" },
+        providers = { lsp = { fallbacks = {} } },
+      },
+      keymap = {
+        ["<CR>"] = { "fallback" },
+        ["<C-y>"] = { "select_and_accept", "fallback" },
+      },
+      completion = {
+        list = { selection = { preselect = false, auto_insert = false } },
       },
     },
   },
