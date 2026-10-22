@@ -53,6 +53,7 @@
   };
 
   services = {
+    checklist.enable = config.myconfig.desktop.enable;
     fwupd.enable = lib.mkIf config.myconfig.desktop.enable true;
     pcscd.enable = true;
   };

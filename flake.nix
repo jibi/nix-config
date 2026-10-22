@@ -25,6 +25,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+    checklist.url = "path:/home/jibi/src/checklist";
   };
 
   outputs =
@@ -38,12 +39,14 @@
       nix-secrets,
       disko,
       nixos-facter-modules,
+      checklist,
       ...
     }:
     let
       specialArgs = {
         inherit
           bisca
+          checklist
           home-manager
           llm-agents
           mango

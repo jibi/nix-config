@@ -82,4 +82,5 @@ in
   xdg.configFile."calibre/customize.py.json".text = builtins.toJSON {
     plugins."CrossPoint Reader" = "${config.xdg.configHome}/calibre/plugins/CrossPoint Reader.zip";
   };
+
 }
