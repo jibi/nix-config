@@ -26,8 +26,8 @@ in
     brightnessctl
     btrfs-progs
     bubblewrap
-    linuxPackages.cpupower
     llmAgentsPkgs.codex
+    linuxPackages.cpupower
     diceware
     difftastic
     discord
@@ -40,8 +40,10 @@ in
     gimp
     google-chrome
     gparted
+    ifuse
     imagemagick
     jujutsu
+    libimobiledevice
     libmtp
     libreoffice
     marp-cli
@@ -66,12 +68,14 @@ in
     zola
   ];
 
-  services.gammastep = {
-    enable = true;
-    latitude = 46.4983;
-    longitude = 11.3548;
-    temperature.night = 2200;
-    tray = true;
+  services = {
+    gammastep = {
+      enable = true;
+      latitude = 46.4983;
+      longitude = 11.3548;
+      temperature.night = 2200;
+      tray = true;
+    };
   };
 
   programs.calibre = {

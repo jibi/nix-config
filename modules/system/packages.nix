@@ -4,7 +4,9 @@
   pkgs,
   ...
 }:
-
+let
+  isDesktop = config.myconfig.desktop.enable;
+in
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -27,7 +29,7 @@
       zsh
       ghostty.terminfo
     ])
-    ++ lib.optionals config.myconfig.desktop.enable (
+    ++ lib.optionals isDesktop (
       with pkgs;
       [
         gdb
@@ -53,8 +55,9 @@
   };
 
   services = {
-    checklist.enable = config.myconfig.desktop.enable;
-    fwupd.enable = lib.mkIf config.myconfig.desktop.enable true;
+    checklist.enable = isDesktop;
+    usbmuxd.enable = isDesktop;
+    fwupd.enable = isDesktop;
     pcscd.enable = true;
   };
 }
