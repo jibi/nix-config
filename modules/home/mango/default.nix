@@ -232,7 +232,7 @@ in
 
       # Keyboard
       repeat_rate = 25;
-      repeat_delay = 600;
+      repeat_delay = 250;
       xkb_rules_layout = "us";
 
       # Trackpad
