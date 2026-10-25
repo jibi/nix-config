@@ -43,7 +43,6 @@ in
       enableSSHSupport = true;
       pinentryPackage = pkgs.pinentry-curses;
     };
-    nix-ld.enable = true;
   };
 
   virtualisation = lib.mkIf config.myconfig.virtualisation.enable {

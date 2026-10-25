@@ -1,6 +1,15 @@
 { ... }:
 
 {
+  programs = {
+    nix-ld.enable = true;
+
+    nh = {
+      enable = true;
+      flake = "/home/jibi/nix-config";
+    };
+  };
+
   nix = {
     settings = {
       system-features = [
