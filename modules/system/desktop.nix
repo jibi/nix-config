@@ -52,7 +52,8 @@ lib.mkIf config.myconfig.desktop.enable {
 
   security = {
     rtkit.enable = true;
-    pam.services.waylock = { };
+    pam.services.waylock.rules.auth.unix.order =
+      config.security.pam.services.waylock.rules.auth.fprintd.order - 1;
   };
 
   fonts = {
