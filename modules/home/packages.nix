@@ -51,6 +51,7 @@ in
     nautilus
     networkmanagerapplet
     nixos-anywhere
+    obs-studio
     llmAgentsPkgs.opencode
     pass
     pavucontrol
