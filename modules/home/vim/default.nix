@@ -2,7 +2,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
 {
@@ -41,14 +40,6 @@
 
       # toml
       taplo
-
-      # rust
-      rust-analyzer
-
-      # haskell
-      haskell-language-server
-      fourmolu
-      hlint
 
       # sh
       shfmt

@@ -1,5 +1,10 @@
 return {
   {
+    "mrcjkb/haskell-snippets.nvim",
+    enabled = false,
+  },
+
+  {
     "nvim-mini/mini.pairs",
     enabled = false,
   },
