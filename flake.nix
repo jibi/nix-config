@@ -47,11 +47,13 @@
         inherit
           bisca
           checklist
+          disko
           home-manager
           llm-agents
           mango
           nixpkgs
           nix-secrets
+          nixos-facter-modules
           self
           ;
       };
@@ -59,16 +61,11 @@
         {
           name,
           system ? "x86_64-linux",
-          installer ? false,
         }:
         nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           modules = [
             ./hosts/${name}
-          ]
-          ++ nixpkgs.lib.optionals installer [
-            disko.nixosModules.disko
-            nixos-facter-modules.nixosModules.facter
           ];
         };
     in
