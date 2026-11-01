@@ -94,6 +94,31 @@
         "type": "path"
       }
     },
+    "cuda-legacy": {
+      "inputs": {
+        "flake-parts": [
+          "jetpack",
+          "cuda-legacy"
+        ],
+        "nixpkgs": [
+          "jetpack",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779836515,
+        "narHash": "sha256-X/AwJZeTjxetRM7JG2BXeffKa1PIg/uo8AP5TX/+kb0=",
+        "owner": "nixos-cuda",
+        "repo": "cuda-legacy",
+        "rev": "baf22622e1114bb36412e5cebe2303f302edb882",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos-cuda",
+        "repo": "cuda-legacy",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -258,11 +283,30 @@
         "type": "github"
       }
     },
+    "jetpack": {
+      "inputs": {
+        "cuda-legacy": "cuda-legacy",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1793150277,
+        "narHash": "sha256-BiGHn6cYXtDT2jFlAxYmfpEu5yIMtCFWpRiCI7wqyDo=",
+        "owner": "anduril",
+        "repo": "jetpack-nixos",
+        "rev": "7fde791978b0b476abda2a6fc9b96d813d39c640",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anduril",
+        "repo": "jetpack-nixos",
+        "type": "github"
+      }
+    },
     "llm-agents": {
       "inputs": {
         "bun2nix": "bun2nix",
         "flake-parts": "flake-parts_2",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix"
       },
@@ -386,6 +430,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1782535326,
+        "narHash": "sha256-ZeRxu4yn6shd3SNF5ZUQb4r7BaVo1zBKMjRhfoNSBmw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "714a5f8c4ead6b31148d829288440ed033ccc041",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1793345420,
         "narHash": "sha256-e/yiZ31gXRROBDcnOtT3YwDQ73NVG9Cepccbt86LIn8=",
         "owner": "NixOS",
@@ -400,7 +460,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1793341285,
         "narHash": "sha256-Y1CiZ4SoBUjLQyQM/pY+rS2dXD3CHLPstF0lmOc73D4=",
@@ -422,11 +482,12 @@
         "checklist": "checklist",
         "disko": "disko",
         "home-manager": "home-manager",
+        "jetpack": "jetpack",
         "llm-agents": "llm-agents",
         "mango": "mango",
         "nix-secrets": "nix-secrets",
         "nixos-facter-modules": "nixos-facter-modules",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       }
     },
     "scenefx": {

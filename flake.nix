@@ -26,6 +26,7 @@
     };
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     checklist.url = "path:/home/jibi/src/checklist";
+    jetpack.url = "github:anduril/jetpack-nixos";
   };
 
   outputs =
@@ -33,6 +34,7 @@
       self,
       nixpkgs,
       home-manager,
+      jetpack,
       llm-agents,
       bisca,
       mango,
@@ -49,6 +51,7 @@
           checklist
           disko
           home-manager
+          jetpack
           llm-agents
           mango
           nixpkgs
