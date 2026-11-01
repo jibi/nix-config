@@ -64,8 +64,9 @@
         {
           name,
           system ? "x86_64-linux",
+          nixpkgsInput ? nixpkgs,
         }:
-        nixpkgs.lib.nixosSystem {
+        nixpkgsInput.lib.nixosSystem {
           inherit system specialArgs;
           modules = [
             ./hosts/${name}
@@ -75,10 +76,17 @@
     {
       nixosConfigurations = {
         # hosts
-        xps = mkHost { name = "xps"; };
+        xps = mkHost {
+          name = "xps";
+        };
         rpi = mkHost {
           name = "rpi";
           system = "aarch64-linux";
+        };
+        jetson = mkHost {
+          name = "jetson";
+          system = "aarch64-linux";
+          nixpkgsInput = jetpack.inputs.nixpkgs;
         };
 
         # ISO installer with SSH access
