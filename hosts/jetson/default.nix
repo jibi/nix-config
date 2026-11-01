@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./hardware-configuration.nix
     ../default.nix
     jetpack.nixosModules.default
   ];
