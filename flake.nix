@@ -84,20 +84,18 @@
         # ISO installer with SSH access
         installer-iso = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          inherit specialArgs;
+          specialArgs = { inherit nix-secrets; };
           modules = [
             "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-            ./modules/options.nix
-            ./modules/shared.nix
-            ./modules/system/networking.nix
-            nix-secrets.nixosModules.default
-            (
-              { shared, ... }:
-              {
-                users.users.nixos.openssh.authorizedKeys.keys = [ shared.sshPubKey ];
-                myconfig.wifi.backend = "nm";
-              }
-            )
+            ./modules/iso-installer.nix
+          ];
+        };
+
+        # jetson ISO installer with SSH access
+        jetson-installer-iso = jetpack.nixosConfigurations.installer_minimal_cross.extendModules {
+          specialArgs = { inherit nix-secrets; };
+          modules = [
+            ./modules/iso-installer.nix
           ];
         };
       };
