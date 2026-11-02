@@ -18,6 +18,7 @@
     graphics.enable = true;
     nvidia-jetpack = {
       enable = true;
+      majorVersion = "7";
       som = "orin-nano";
       carrierBoard = "devkit";
       configureCuda = true;

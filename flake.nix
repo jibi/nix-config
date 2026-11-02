@@ -100,7 +100,7 @@
         };
 
         # jetson ISO installer with SSH access
-        jetson-installer-iso = jetpack.nixosConfigurations.installer_minimal_cross.extendModules {
+        jetson-installer-iso = jetpack.nixosConfigurations.installer_minimal_cross_jp7.extendModules {
           specialArgs = { inherit nix-secrets; };
           modules = [
             ./modules/iso-installer.nix
