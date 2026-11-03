@@ -9,6 +9,7 @@
   modules = {
     desktop.enable = false;
     networking.wifi.backend = "wpa_supplicant";
+    nvidia.cuda.enable = true;
     virtualisation.enable = false;
   };
 
