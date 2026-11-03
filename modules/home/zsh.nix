@@ -27,6 +27,9 @@
     initContent = ''
       setopt NO_HUP
 
+      if [[ "$HOST" != xps ]]; then
+        PROMPT='%F{cyan}%m%f '"$PROMPT"
+      fi
       OLD_PROMPT=$PROMPT
       function nix_dev_shell_prompt() {
         if [[ -n "$NIX_DEV_SHELL" ]]; then
