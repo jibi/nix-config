@@ -13,6 +13,6 @@
     ./packages.nix
     ./desktop.nix
     ./hardware.nix
-    ./cuda.nix
+    ./nvidia.nix
   ];
 }

@@ -2,6 +2,7 @@
   config,
   llm-agents,
   mango,
+  mylib,
   nix-secrets,
   home-manager,
   shared,
@@ -20,6 +21,7 @@
       inherit
         llm-agents
         mango
+        mylib
         shared
         ;
       myconfig = config.myconfig;

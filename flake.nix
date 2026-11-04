@@ -45,6 +45,7 @@
       ...
     }:
     let
+      mylib = import ./lib { lib = nixpkgs.lib; };
       specialArgs = {
         inherit
           bisca
@@ -54,6 +55,7 @@
           jetpack
           llm-agents
           mango
+          mylib
           nixpkgs
           nix-secrets
           nixos-facter-modules

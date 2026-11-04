@@ -1,4 +1,10 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  mylib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -6,39 +12,61 @@
     ./hardware-configuration.nix
   ];
 
-  myconfig = {
-    desktop.enable = true;
-    display.scale = "2.5";
-    wifi.backend = "nm";
-    cuda = {
-      enable = false;
-      passthrough = true;
+  options = {
+    myconfig.xps.nvidia.enable = lib.mkEnableOption "xps nixos-nvidia specialisation";
+  };
+
+  config = {
+    myconfig = {
+      xps.nvidia.enable = false;
+      desktop.enable = true;
+      display.scale = "2.5";
+      wifi.backend = "nm";
+      virtualisation.enable = false;
     };
-    virtualisation.enable = false;
-  };
 
-  boot = {
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    specialisation = lib.mkIf config.myconfig.xps.nvidia.enable {
+      nvidia.configuration = {
+        system.nixos.label = "nixos-nvidia";
 
-    kernelModules = [ "snd_hda_intel" ];
-    extraModprobeConfig = ''
-      options snd_hda_intel power_save=0 power_save_controller=N
-    '';
-  };
+        myconfig.nvidia = {
+          enable = true;
 
-  networking = {
-    hostName = "xps";
-  };
+          addresses = {
+            integrated = mylib.pciAddress 0 2 0;
+            discrete = mylib.pciAddress 1 0 0;
+          };
 
-  services = {
-    fprintd = {
-      enable = true;
-      tod = {
-        enable = true;
-        driver = pkgs.libfprint-2-tod1-goodix;
+          prime.enable = true;
+          passthrough.enable = true;
+          cuda.enable = true;
+        };
       };
     };
-  };
 
-  system.stateVersion = "26.11";
+    boot = {
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+      kernelModules = [ "snd_hda_intel" ];
+      extraModprobeConfig = ''
+        options snd_hda_intel power_save=0 power_save_controller=N
+      '';
+    };
+
+    networking = {
+      hostName = "xps";
+    };
+
+    services = {
+      fprintd = {
+        enable = true;
+        tod = {
+          enable = true;
+          driver = pkgs.libfprint-2-tod1-goodix;
+        };
+      };
+    };
+
+    system.stateVersion = "26.11";
+  };
 }

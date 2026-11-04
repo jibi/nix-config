@@ -8,10 +8,6 @@
       description = "Named string aliases for hostnames";
     };
     desktop.enable = lib.mkEnableOption "desktop environment";
-    cuda = {
-      enable = lib.mkEnableOption "CUDA support";
-      passthrough = lib.mkEnableOption "CUDA passthrough support";
-    };
     virtualisation.enable = lib.mkEnableOption "virtualisation (docker, libvirtd)";
     display.scale = lib.mkOption {
       type = lib.types.str;
