@@ -85,7 +85,7 @@ in
     };
   };
 
-  myconfig.wifi.backend = "wpa_supplicant";
+  modules.networking.wifi.backend = "wpa_supplicant";
 
   networking = {
     hostName = "rpi";

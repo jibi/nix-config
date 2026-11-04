@@ -24,13 +24,13 @@
         mylib
         shared
         ;
-      myconfig = config.myconfig;
+      modules = config.modules;
       homeBin = ".bin";
     };
 
     users.jibi =
       {
-        myconfig,
+        modules,
         lib,
         ...
       }:
@@ -41,7 +41,7 @@
           ./zsh.nix
           ./ssh.nix
         ]
-        ++ lib.optionals myconfig.desktop.enable [
+        ++ lib.optionals modules.desktop.enable [
           ./backup.nix
           ./ghostty.nix
           ./git.nix

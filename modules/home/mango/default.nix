@@ -1,7 +1,7 @@
 {
   pkgs,
   mango,
-  myconfig,
+  modules,
   homeBin,
   ...
 }:
@@ -278,7 +278,7 @@ in
       focus_color = "0x000000ff";
 
       monitor_rule = [
-        "name:^eDP-1$,scale:${myconfig.display.scale}"
+        "name:^eDP-1$,scale:${modules.desktop.display.scale}"
         "name:^DP-2$,scale:2"
       ];
 

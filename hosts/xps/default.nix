@@ -13,23 +13,23 @@
   ];
 
   options = {
-    myconfig.xps.nvidia.enable = lib.mkEnableOption "xps nixos-nvidia specialisation";
+    modules.xps.nvidia.enable = lib.mkEnableOption "xps nixos-nvidia specialisation";
   };
 
   config = {
-    myconfig = {
+    modules = {
       xps.nvidia.enable = false;
       desktop.enable = true;
-      display.scale = "2.5";
-      wifi.backend = "nm";
+      desktop.display.scale = "2.5";
+      networking.wifi.backend = "nm";
       virtualisation.enable = false;
     };
 
-    specialisation = lib.mkIf config.myconfig.xps.nvidia.enable {
+    specialisation = lib.mkIf config.modules.xps.nvidia.enable {
       nvidia.configuration = {
         system.nixos.label = "nixos-nvidia";
 
-        myconfig.nvidia = {
+        modules.nvidia = {
           enable = true;
 
           addresses = {

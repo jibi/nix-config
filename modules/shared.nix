@@ -24,7 +24,7 @@
         };
       };
 
-      endpoint = "${config.myconfig.hosts.home}:${toString port}";
+      endpoint = "${config.modules.networking.hosts.home}:${toString port}";
     };
   };
 }

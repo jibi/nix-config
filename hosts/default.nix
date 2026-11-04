@@ -19,7 +19,7 @@
     ../modules/home
   ];
 
-  config = lib.mkIf config.myconfig.desktop.enable {
+  config = lib.mkIf config.modules.desktop.enable {
     nix.settings = {
       extra-substituters = [ "https://cache.numtide.com?priority=100" ];
       extra-trusted-public-keys = [

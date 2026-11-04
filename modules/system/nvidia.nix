@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.myconfig.nvidia;
+  cfg = config.modules.nvidia;
   address = lib.types.submodule {
     options = {
       bus = lib.mkOption {
@@ -37,21 +37,23 @@ let
   '';
 in
 {
-  options.myconfig.nvidia = {
-    prime.enable = lib.mkEnableOption "prime offloading";
-    passthrough.enable = lib.mkEnableOption "GPU qemu passthrough";
-    cuda.enable = lib.mkEnableOption "CUDA system integration";
+  options = {
+    modules.nvidia = {
+      prime.enable = lib.mkEnableOption "prime offloading";
+      passthrough.enable = lib.mkEnableOption "GPU qemu passthrough";
+      cuda.enable = lib.mkEnableOption "CUDA system integration";
 
-    enable = lib.mkEnableOption "NVIDIA GPU drivers";
+      enable = lib.mkEnableOption "NVIDIA GPU drivers";
 
-    addresses = {
-      integrated = lib.mkOption {
-        type = address;
-        description = "PCI address of the integrated GPU";
-      };
-      discrete = lib.mkOption {
-        type = address;
-        description = "PCI address of the discrete NVIDIA GPU";
+      addresses = {
+        integrated = lib.mkOption {
+          type = address;
+          description = "PCI address of the integrated GPU";
+        };
+        discrete = lib.mkOption {
+          type = address;
+          description = "PCI address of the discrete NVIDIA GPU";
+        };
       };
     };
   };
@@ -92,7 +94,7 @@ in
     #     };
     # };
 
-    (lib.mkIf config.myconfig.nvidia.cuda.enable {
+    (lib.mkIf config.modules.nvidia.cuda.enable {
       hardware.graphics.enable = true;
 
       nix.settings = {
@@ -112,7 +114,7 @@ in
     (lib.mkIf cfg.passthrough.enable {
       boot.kernelParams = [ "intel_iommu=on" ];
 
-      services.greetd.settings = lib.mkIf config.myconfig.desktop.enable {
+      services.greetd.settings = lib.mkIf config.modules.desktop.enable {
         initial_session.command = lib.mkForce "${integratedMango}";
         default_session.command = lib.mkForce "${integratedMango}";
       };

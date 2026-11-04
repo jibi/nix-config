@@ -7,10 +7,9 @@
     jetpack.nixosModules.default
   ];
 
-  myconfig = {
+  modules = {
     desktop.enable = false;
-    wifi.backend = "wpa_supplicant";
-    cuda.enable = false;
+    networking.wifi.backend = "wpa_supplicant";
     virtualisation.enable = false;
   };
 

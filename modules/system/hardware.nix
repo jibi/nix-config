@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.mkIf config.myconfig.desktop.enable {
+lib.mkIf config.modules.desktop.enable {
   boot.supportedFilesystems = [
     "vfat"
     "fuse.sshfs"

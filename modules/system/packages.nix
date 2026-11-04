@@ -5,7 +5,7 @@
   ...
 }:
 let
-  isDesktop = config.myconfig.desktop.enable;
+  isDesktop = config.modules.desktop.enable;
 
   # see NixOS/nixpkgs#580890
   appimageToolsOverlay = final: prev: {
@@ -20,61 +20,67 @@ let
   };
 in
 {
-  nixpkgs = {
-    config.allowUnfree = true;
-
-    overlays = [
-      appimageToolsOverlay
-    ];
+  options = {
+    modules.virtualisation.enable = lib.mkEnableOption "virtualisation (docker, libvirtd)";
   };
 
-  environment.systemPackages =
-    (with pkgs; [
-      bash
-      curl
-      dnsmasq
-      file
-      htop
-      jq
-      neovim
-      nmap
-      pciutils
-      psmisc
-      ripgrep
-      tcpdump
-      usbutils
-      unzip
-      zsh
-      ghostty.terminfo
-    ])
-    ++ lib.optionals isDesktop (
-      with pkgs;
-      [
-        gdb
-        wireshark
-      ]
-    );
+  config = {
+    nixpkgs = {
+      config.allowUnfree = true;
 
-  programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-curses;
+      overlays = [
+        appimageToolsOverlay
+      ];
     };
-  };
 
-  virtualisation = lib.mkIf config.myconfig.virtualisation.enable {
-    docker.enable = true;
-    libvirtd = {
-      enable = true;
-      qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+    environment.systemPackages =
+      (with pkgs; [
+        bash
+        curl
+        dnsmasq
+        file
+        htop
+        jq
+        neovim
+        nmap
+        pciutils
+        psmisc
+        ripgrep
+        tcpdump
+        usbutils
+        unzip
+        zsh
+        ghostty.terminfo
+      ])
+      ++ lib.optionals isDesktop (
+        with pkgs;
+        [
+          gdb
+          wireshark
+        ]
+      );
+
+    programs = {
+      gnupg.agent = {
+        enable = true;
+        enableSSHSupport = true;
+        pinentryPackage = pkgs.pinentry-curses;
+      };
     };
-  };
 
-  services = {
-    checklist.enable = isDesktop;
-    usbmuxd.enable = isDesktop;
-    fwupd.enable = isDesktop;
-    pcscd.enable = true;
+    virtualisation = lib.mkIf config.modules.virtualisation.enable {
+      docker.enable = true;
+      libvirtd = {
+        enable = true;
+        qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+      };
+    };
+
+    services = {
+      checklist.enable = isDesktop;
+      usbmuxd.enable = isDesktop;
+      fwupd.enable = isDesktop;
+      pcscd.enable = true;
+    };
   };
 }
