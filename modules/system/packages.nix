@@ -6,9 +6,27 @@
 }:
 let
   isDesktop = config.myconfig.desktop.enable;
+
+  # see NixOS/nixpkgs#580890
+  appimageToolsOverlay = final: prev: {
+    appimageTools = prev.appimageTools.override {
+      buildFHSEnv = final.lib.extendMkDerivation {
+        constructDrv = final.buildFHSEnv;
+        extendDrvArgs = _: args: {
+          targetPkgs = pkgs: args.targetPkgs pkgs ++ [ pkgs.libgpg-error ];
+        };
+      };
+    };
+  };
 in
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+
+    overlays = [
+      appimageToolsOverlay
+    ];
+  };
 
   environment.systemPackages =
     (with pkgs; [
