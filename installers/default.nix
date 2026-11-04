@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./shared.nix
-    ./system/networking.nix
+    ../modules/shared.nix
+    ../modules/system/networking.nix
     nix-secrets.nixosModules.default
   ];
 
