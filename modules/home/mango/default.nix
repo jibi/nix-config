@@ -18,7 +18,6 @@ let
 
   intMonitorScript = pkgs.writeShellScript "int" ''
     set -e
-    ${wlrRandr} --output DP-2 --off
     ${wlrRandr} --output eDP-1 --on
   '';
   extMonitorScript = pkgs.writeShellScript "ext" ''
@@ -126,6 +125,30 @@ in
         "urgency=low".border-color = "#6c7086";
         "urgency=high".border-color = "#f38ba8";
       };
+    };
+
+    kanshi = {
+      enable = true;
+      systemdTarget = "mango-session.target";
+      settings = [
+        {
+          profile = {
+            name = "external";
+            outputs = [
+              { criteria = "eDP-1"; }
+              { criteria = "DP-2"; }
+            ];
+            exec = "${extMonitorScript}";
+          };
+        }
+        {
+          profile = {
+            name = "internal";
+            outputs = [ { criteria = "eDP-1"; } ];
+            exec = "${intMonitorScript}";
+          };
+        }
+      ];
     };
 
     swayidle =
