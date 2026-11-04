@@ -17,6 +17,11 @@
   };
 
   config = lib.mkIf config.modules.desktop.enable {
+    modules = {
+      backup.enable = true;
+      secrets.tools.enable = true;
+    };
+
     programs = {
       mango.enable = true;
       virt-manager.enable = true;

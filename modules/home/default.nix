@@ -38,11 +38,11 @@
         home.stateVersion = "25.05";
 
         imports = [
+          ./backup.nix
           ./zsh.nix
           ./ssh.nix
         ]
         ++ lib.optionals modules.desktop.enable [
-          ./backup.nix
           ./ghostty.nix
           ./git.nix
           ./mango

@@ -1,4 +1,10 @@
-{ pkgs, homeBin, ... }:
+{
+  pkgs,
+  lib,
+  osConfig,
+  homeBin,
+  ...
+}:
 
 let
   mountLuks = pkgs.writeShellScript "mount-luks" ''
@@ -43,7 +49,7 @@ let
     ${umountLuks} "$name"
   '';
 in
-{
+lib.mkIf osConfig.modules.backup.enable {
   home.file = {
     "${homeBin}/mount-luks".source = mountLuks;
     "${homeBin}/umount-luks".source = umountLuks;

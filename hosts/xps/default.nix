@@ -22,6 +22,7 @@
       desktop.enable = true;
       desktop.display.scale = "2.5";
       networking.wifi.backend = "nm";
+      networking.wireguard.enable = true;
       virtualisation.enable = false;
     };
 

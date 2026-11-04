@@ -9,12 +9,12 @@
 let
   cfg = config.modules.networking;
   backend = cfg.wifi.backend;
-  isDesktop = config.modules.desktop.enable or false;
   wg = shared.wg;
 in
 {
   options = {
     modules.networking = {
+      wireguard.enable = lib.mkEnableOption "the home WireGuard NetworkManager profile";
       hosts = lib.mkOption {
         type = lib.types.attrsOf lib.types.str;
         default = { };
@@ -37,7 +37,7 @@ in
       networkmanager = lib.mkIf (backend == "nm") {
         enable = true;
         ensureProfiles = {
-          environmentFiles = lib.optional isDesktop config.age.secrets.wg-private.path;
+          environmentFiles = lib.optional cfg.wireguard.enable config.age.secrets.wg-private.path;
           profiles =
             (lib.mapAttrs (_: net: {
               connection = {
@@ -52,7 +52,7 @@ in
               ipv4.method = "auto";
               ipv6.method = "auto";
             }) wifiNetworks)
-            // lib.optionalAttrs isDesktop {
+            // lib.optionalAttrs cfg.wireguard.enable {
               wg-home = {
                 connection = {
                   id = "wg-home";
