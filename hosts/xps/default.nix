@@ -22,6 +22,10 @@
       desktop.display.scale = "2.5";
       networking.wifi.backend = "nm";
       networking.wireguard.enable = true;
+      fingerprint = {
+        enable = true;
+        todDriver = pkgs.libfprint-2-tod1-goodix;
+      };
       virtualisation.enable = false;
     };
 
@@ -55,16 +59,6 @@
 
     networking = {
       hostName = "xps";
-    };
-
-    services = {
-      fprintd = {
-        enable = true;
-        tod = {
-          enable = true;
-          driver = pkgs.libfprint-2-tod1-goodix;
-        };
-      };
     };
 
     system.stateVersion = "26.11";

@@ -11,6 +11,7 @@
     ./packages.nix
     ./desktop.nix
     ./hardware.nix
+    ./fingerprint.nix
     ./nvidia.nix
   ];
 }
