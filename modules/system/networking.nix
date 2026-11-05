@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  shared,
+  myvars,
   wifiNetworks,
   ...
 }:
@@ -9,7 +9,7 @@
 let
   cfg = config.modules.networking;
   backend = cfg.wifi.backend;
-  wg = shared.wg;
+  wg = myvars.wg;
 in
 {
   options = {
@@ -65,7 +65,7 @@ in
                   listen-port = 0;
                 };
                 "wireguard-peer.${wg.serverPublicKey}" = {
-                  endpoint = wg.endpoint;
+                  endpoint = "${cfg.hosts.home}:${toString wg.port}";
                   allowed-ips = "0.0.0.0/0;";
                   persistent-keepalive = 25;
                 };

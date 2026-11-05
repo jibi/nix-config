@@ -1,12 +1,13 @@
 inputs@{ nixpkgs, ... }:
 let
+  myvars = import ./vars;
   mylib = import ./lib {
     inherit inputs;
     lib = nixpkgs.lib;
   };
 
-  hosts = import ./hosts { inherit inputs mylib; };
-  installers = import ./installers { inherit inputs mylib; };
+  hosts = import ./hosts { inherit inputs mylib myvars; };
+  installers = import ./installers { inherit inputs mylib myvars; };
 in
 {
   nixosConfigurations = hosts // installers;

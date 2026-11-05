@@ -1,15 +1,18 @@
-{ inputs, mylib }:
+{
+  inputs,
+  mylib,
+  myvars,
+}:
 let
   commonModules = map mylib.defaultModule [ "nix-secrets" ] ++ [
-    ../modules/shared.nix
     ../modules/system/networking.nix
-    ({ shared, ... }: {
+    ({ myvars, ... }: {
       modules.networking.wifi.backend = "nm";
-      users.users.nixos.openssh.authorizedKeys.keys = [ shared.sshPubKey ];
+      users.users.nixos.openssh.authorizedKeys.keys = [ myvars.jibiSshPubKey ];
     })
   ];
 in
 {
-  installer-iso = import ./generic.nix { inherit inputs commonModules; };
-  jetson-installer-iso = import ./jetson.nix { inherit inputs commonModules; };
+  installer-iso = import ./generic.nix { inherit inputs commonModules myvars; };
+  jetson-installer-iso = import ./jetson.nix { inherit inputs commonModules myvars; };
 }

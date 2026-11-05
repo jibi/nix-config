@@ -1,7 +1,6 @@
-{ shared, ... }:
-
+{ myvars, ... }:
 {
-  home.file.".ssh/id_rsa.pub".text = shared.sshPubKey + "\n";
+  home.file.".ssh/id_rsa.pub".text = myvars.jibiSshPubKey + "\n";
 
   programs.ssh = {
     enable = true;

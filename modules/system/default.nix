@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../shared.nix
     ./nix.nix
     ./locale.nix
     ./boot.nix

@@ -2,12 +2,12 @@
   config,
   lib,
   pkgs,
-  shared,
+  myvars,
   ...
 }:
 
 let
-  wg = shared.wg;
+  wg = myvars.wg;
 
   iptables = "${pkgs.iptables}/bin/iptables";
 

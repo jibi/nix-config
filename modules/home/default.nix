@@ -5,7 +5,7 @@
   mylib,
   nix-secrets,
   home-manager,
-  shared,
+  myvars,
   ...
 }:
 
@@ -22,7 +22,7 @@
         llm-agents
         mango
         mylib
-        shared
+        myvars
         ;
       modules = config.modules;
       homeBin = ".bin";

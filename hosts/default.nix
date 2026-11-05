@@ -1,9 +1,16 @@
-{ inputs, mylib }:
+{
+  inputs,
+  mylib,
+  myvars,
+}:
 let
   inherit (inputs) nixpkgs jetpack;
 
   specialArgs = inputs // {
-    inherit mylib;
+    inherit
+      mylib
+      myvars
+      ;
   };
 
   commonModules =
