@@ -1,4 +1,4 @@
-{ lib }:
+{ lib, inputs }:
 
 let
   hex2 = n: lib.fixedWidthString 2 "0" (lib.toLower (lib.toHexString n));
@@ -18,6 +18,8 @@ let
     "0000:${hex2 bus}:${hex2 device}.${lib.toLower (lib.toHexString function)}";
 in
 {
+  defaultModule = name: inputs.${name}.nixosModules.default;
+
   pciAddress =
     bus: device: function:
     let
