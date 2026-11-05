@@ -3,65 +3,37 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-secrets = {
-      url = "git+ssh://git@github.com/jibi/nix-secrets";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    bisca = {
-      url = "git+ssh://git@github.com/jibi/bisca";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-secrets.url = "git+ssh://git@github.com/jibi/nix-secrets";
+    home-manager.url = "github:nix-community/home-manager";
+    bisca.url = "git+ssh://git@github.com/jibi/bisca";
     llm-agents.url = "github:numtide/llm-agents.nix";
-    mango = {
-      url = "github:mangowm/mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    mango.url = "github:mangowm/mango";
+    disko.url = "github:nix-community/disko";
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     checklist.url = "path:/home/jibi/src/checklist";
     jetpack.url = "github:anduril/jetpack-nixos";
+
+    nix-secrets.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    bisca.inputs.nixpkgs.follows = "nixpkgs";
+    mango.inputs.nixpkgs.follows = "nixpkgs";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    {
-      self,
+    inputs@{
       nixpkgs,
-      home-manager,
       jetpack,
-      llm-agents,
-      bisca,
-      mango,
       nix-secrets,
-      disko,
-      nixos-facter-modules,
-      checklist,
       ...
     }:
     let
       mylib = import ./lib { lib = nixpkgs.lib; };
-      specialArgs = {
-        inherit
-          bisca
-          checklist
-          disko
-          home-manager
-          jetpack
-          llm-agents
-          mango
-          mylib
-          nixpkgs
-          nix-secrets
-          nixos-facter-modules
-          self
-          ;
+
+      specialArgs = inputs // {
+        inherit mylib;
       };
+
       mkHost =
         {
           name,
