@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, ... }:
 
 {
   programs = {
@@ -12,6 +12,13 @@
 
   nix = {
     settings = {
+      extra-substituters = lib.mkIf config.modules.desktop.enable [
+        "https://cache.numtide.com?priority=100"
+      ];
+      extra-trusted-public-keys = lib.mkIf config.modules.desktop.enable [
+        "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+      ];
+
       system-features = [
         "uid-range"
       ];
