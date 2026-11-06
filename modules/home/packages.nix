@@ -54,6 +54,7 @@ lib.mkIf osConfig.modules.desktop.enable {
     networkmanagerapplet
     nixos-anywhere
     obs-studio
+    openhue-cli
     llmAgentsPkgs.opencode
     pass
     pavucontrol
