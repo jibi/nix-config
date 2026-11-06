@@ -8,6 +8,7 @@
 
   modules = {
     desktop.enable = false;
+    bootLoader.enable = true;
     networking.wifi.backend = "wpa_supplicant";
     nvidia.cuda.enable = true;
     virtualisation.enable = false;
@@ -24,9 +25,8 @@
     };
   };
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    kernelParams = [ "plymouth.ignore-serial-consoles" ];
   };
 
   networking = {

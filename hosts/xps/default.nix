@@ -17,6 +17,7 @@
 
   config = {
     modules = {
+      bootLoader.enable = true;
       xps.nvidia.enable = false;
       desktop.enable = true;
       desktop.display.scale = "2.5";
@@ -50,6 +51,7 @@
     };
 
     boot = {
+      kernelPackages = pkgs.linuxPackages_latest;
       initrd.kernelModules = [ "i915" ];
       binfmt.emulatedSystems = [ "aarch64-linux" ];
 
