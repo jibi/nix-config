@@ -45,6 +45,7 @@ lib.mkIf osConfig.modules.desktop.enable {
     ifuse
     imagemagick
     jujutsu
+    lan-mouse
     libimobiledevice
     libmtp
     libreoffice
