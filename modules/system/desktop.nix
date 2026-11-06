@@ -19,7 +19,6 @@
   config = lib.mkIf config.modules.desktop.enable {
     modules = {
       backup.enable = true;
-      secrets.tools.enable = true;
     };
 
     programs = {
