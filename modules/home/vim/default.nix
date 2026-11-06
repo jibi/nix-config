@@ -1,10 +1,11 @@
 # code snippet from: https://github.com/LazyVim/LazyVim/discussions/1972
 {
   pkgs,
+  osConfig,
   lib,
   ...
 }:
-{
+lib.mkIf osConfig.modules.desktop.enable {
   programs.neovim = {
     enable = true;
     withRuby = false;

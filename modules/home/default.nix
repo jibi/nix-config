@@ -1,5 +1,4 @@
 {
-  config,
   llm-agents,
   mango,
   mylib,
@@ -24,31 +23,21 @@
         mylib
         myvars
         ;
-      modules = config.modules;
       homeBin = ".bin";
     };
 
-    users.jibi =
-      {
-        modules,
-        lib,
-        ...
-      }:
-      {
-        home.stateVersion = "25.05";
-
-        imports = [
-          ./backup.nix
-          ./zsh.nix
-          ./ssh.nix
-        ]
-        ++ lib.optionals modules.desktop.enable [
-          ./ghostty.nix
-          ./git.nix
-          ./mango
-          ./packages.nix
-          ./vim
-        ];
-      };
+    users.jibi = {
+      home.stateVersion = "25.05";
+      imports = [
+        ./backup.nix
+        ./zsh.nix
+        ./ssh.nix
+        ./ghostty.nix
+        ./git.nix
+        ./mango
+        ./packages.nix
+        ./vim
+      ];
+    };
   };
 }

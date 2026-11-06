@@ -1,6 +1,8 @@
 {
   config,
+  lib,
   pkgs,
+  osConfig,
   llm-agents,
   ...
 }:
@@ -17,7 +19,7 @@ let
     ln -s ${crosspointZip} "$out/CrossPoint Reader.zip"
   '';
 in
-{
+lib.mkIf osConfig.modules.desktop.enable {
   home.packages = with pkgs; [
     acpi
     adwaita-icon-theme

@@ -1,6 +1,11 @@
-{ pkgs, ... }:
-
 {
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
+
+lib.mkIf osConfig.modules.desktop.enable {
   programs.git = {
     enable = true;
     package = pkgs.gitFull;

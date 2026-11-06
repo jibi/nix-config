@@ -1,6 +1,6 @@
-{ ... }:
+{ lib, osConfig, ... }:
 
-{
+lib.mkIf osConfig.modules.desktop.enable {
   programs.ghostty = {
     enable = true;
 
