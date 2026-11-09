@@ -20,6 +20,14 @@ in
 {
   defaultModule = name: inputs.${name}.nixosModules.default;
 
+  exportEnv =
+    env:
+    lib.concatStrings (
+      lib.mapAttrsToList (
+        name: value: lib.optionalString (value != null) "export ${lib.toShellVar name value}\n"
+      ) env
+    );
+
   pciAddress =
     bus: device: function:
     let

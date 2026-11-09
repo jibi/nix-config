@@ -1,4 +1,4 @@
-{ ... }:
+{ mylib, ... }:
 {
-  nixpkgs.overlays = import ../../overlays { };
+  nixpkgs.overlays = import ../../overlays { inherit mylib; };
 }
