@@ -20,6 +20,7 @@
       xps.nvidia.enable = false;
       desktop.enable = true;
       desktop.display.scale = "2.5";
+      duckstation.qtScaleFactor = "1.25";
       networking.wifi.backend = "nm";
       networking.wireguard.enable = true;
       fingerprint = {

@@ -19,6 +19,7 @@
   config = lib.mkIf config.modules.desktop.enable {
     modules = {
       backup.enable = true;
+      duckstation.enable = lib.mkDefault true;
     };
 
     programs = {
