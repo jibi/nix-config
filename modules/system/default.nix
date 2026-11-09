@@ -9,6 +9,7 @@
     ./networking.nix
     ./users.nix
     ./packages.nix
+    ./overlays.nix
     ./desktop.nix
     ./hardware.nix
     ./fingerprint.nix

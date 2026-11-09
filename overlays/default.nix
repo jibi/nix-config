@@ -1,0 +1,4 @@
+{ ... }:
+[
+  (import ./appimage-tools.nix)
+]
