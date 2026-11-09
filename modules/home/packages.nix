@@ -19,77 +19,84 @@ let
     ln -s ${crosspointZip} "$out/CrossPoint Reader.zip"
   '';
 in
-lib.mkIf osConfig.modules.desktop.enable {
-  home.packages = with pkgs; [
-    acpi
-    adwaita-icon-theme
-    appimage-run
-    audacity
-    brightnessctl
-    btrfs-progs
-    bubblewrap
-    llmAgentsPkgs.codex
-    linuxPackages.cpupower
-    diceware
-    difftastic
-    discord
-    dnsutils
-    eog
-    evince
-    ffmpeg
-    firefox
-    gedit
-    gimp
-    google-chrome
-    gparted
-    ifuse
-    imagemagick
-    jujutsu
-    lan-mouse
-    libimobiledevice
-    libmtp
-    libreoffice
-    marp-cli
-    mgba
-    nautilus
-    networkmanagerapplet
-    nixos-anywhere
-    obs-studio
-    openhue-cli
-    llmAgentsPkgs.opencode
-    pass
-    pavucontrol
-    pulseaudio
-    qpdf
-    ruby
-    signal-desktop
-    sqlite
-    swaybg
-    trace-cmd
-    vial
-    vlc
-    websocat
-    wlr-randr
-    zola
+{
+  config = lib.mkMerge [
+    (lib.mkIf osConfig.modules.desktop.enable {
+      home.packages = with pkgs; [
+        acpi
+        adwaita-icon-theme
+        appimage-run
+        audacity
+        brightnessctl
+        btrfs-progs
+        bubblewrap
+        llmAgentsPkgs.codex
+        linuxPackages.cpupower
+        diceware
+        difftastic
+        discord
+        dnsutils
+        eog
+        evince
+        ffmpeg
+        firefox
+        gedit
+        gimp
+        google-chrome
+        gparted
+        ifuse
+        imagemagick
+        jujutsu
+        lan-mouse
+        libimobiledevice
+        libmtp
+        libreoffice
+        marp-cli
+        mgba
+        nautilus
+        networkmanagerapplet
+        nixos-anywhere
+        obs-studio
+        openhue-cli
+        llmAgentsPkgs.opencode
+        pass
+        pavucontrol
+        pulseaudio
+        qpdf
+        ruby
+        signal-desktop
+        sqlite
+        swaybg
+        trace-cmd
+        vial
+        vlc
+        websocat
+        wlr-randr
+        zola
+      ];
+
+      services = {
+        gammastep = {
+          enable = true;
+          latitude = 46.4983;
+          longitude = 11.3548;
+          temperature.night = 2200;
+          tray = true;
+        };
+      };
+
+      programs.calibre = {
+        enable = true;
+        plugins = [ crosspointPlugin ];
+      };
+
+      xdg.configFile."calibre/customize.py.json".text = builtins.toJSON {
+        plugins."CrossPoint Reader" = "${config.xdg.configHome}/calibre/plugins/CrossPoint Reader.zip";
+      };
+
+    })
+    (lib.mkIf osConfig.modules.duckstation.enable {
+      home.packages = [ osConfig.modules.duckstation.package ];
+    })
   ];
-
-  services = {
-    gammastep = {
-      enable = true;
-      latitude = 46.4983;
-      longitude = 11.3548;
-      temperature.night = 2200;
-      tray = true;
-    };
-  };
-
-  programs.calibre = {
-    enable = true;
-    plugins = [ crosspointPlugin ];
-  };
-
-  xdg.configFile."calibre/customize.py.json".text = builtins.toJSON {
-    plugins."CrossPoint Reader" = "${config.xdg.configHome}/calibre/plugins/CrossPoint Reader.zip";
-  };
-
 }

@@ -10,14 +10,24 @@ let
 in
 {
   options = {
+    modules.duckstation = {
+      enable = lib.mkEnableOption "DuckStation";
+      package = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.duckstation.override {
+          inherit (config.modules.duckstation) qtScaleFactor;
+        };
+      };
+      qtScaleFactor = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+      };
+    };
     modules.virtualisation.enable = lib.mkEnableOption "virtualisation (docker, libvirtd)";
   };
 
   config = {
-    nixpkgs = {
-      config.allowUnfree = true;
-
-    };
+    nixpkgs.config.allowUnfree = true;
 
     environment.systemPackages =
       (with pkgs; [
