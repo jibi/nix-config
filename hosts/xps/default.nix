@@ -50,6 +50,7 @@
     };
 
     boot = {
+      initrd.kernelModules = [ "i915" ];
       binfmt.emulatedSystems = [ "aarch64-linux" ];
 
       kernelModules = [ "snd_hda_intel" ];
