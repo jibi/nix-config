@@ -1,4 +1,5 @@
 {
+  myvars,
   config,
   bisca,
   lib,
@@ -23,7 +24,7 @@ in
     ./wireguard.nix
   ];
 
-  nix.settings.trusted-users = [ "jibi" ];
+  nix.settings.trusted-users = [ myvars.username ];
 
   boot = {
     loader = {

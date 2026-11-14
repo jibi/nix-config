@@ -8,7 +8,7 @@ let
     ../modules/system/networking.nix
     ({ myvars, ... }: {
       modules.networking.wifi.backend = "nm";
-      users.users.nixos.openssh.authorizedKeys.keys = [ myvars.jibiSshPubKey ];
+      users.users.nixos.openssh.authorizedKeys.keys = [ myvars.sshPubkey ];
     })
   ];
 in

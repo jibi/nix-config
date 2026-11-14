@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   osConfig,
@@ -7,6 +8,7 @@
 }:
 
 let
+  home = config.home.homeDirectory;
   mountLuks = pkgs.writeShellScript "mount-luks" ''
     set -e
 
@@ -44,7 +46,7 @@ let
     mount_path="/mnt/$name"
 
     ${mountLuks} "$name"
-    sudo rsync -aAXv --delete --delete-excluded --exclude-from=- /home/jibi/ "$mount_path/current/home/jibi/" < /home/jibi/.rsync-exclude
+    sudo rsync -aAXv --delete --delete-excluded --exclude-from=- ${lib.escapeShellArg "${home}/"} "$mount_path/current"${lib.escapeShellArg "${home}/"} < ${lib.escapeShellArg "${home}/.rsync-exclude"}
     sudo btrfs subvolume snapshot "$mount_path/current" "$mount_path/snapshots/$(date "+%Y_%m_%d")"
     ${umountLuks} "$name"
   '';

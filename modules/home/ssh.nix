@@ -1,6 +1,6 @@
 { myvars, ... }:
 {
-  home.file.".ssh/id_rsa.pub".text = myvars.jibiSshPubKey + "\n";
+  home.file.".ssh/id_rsa.pub".text = myvars.sshPubkey + "\n";
 
   programs.ssh = {
     enable = true;

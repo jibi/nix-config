@@ -6,7 +6,8 @@
   ...
 }:
 {
-  users.users.jibi = {
+  users.users.${myvars.username} = {
+    uid = 1000;
     isNormalUser = true;
     description = "Jibi";
     extraGroups = [
@@ -16,7 +17,7 @@
     ++ lib.optionals config.virtualisation.docker.enable [ "docker" ]
     ++ lib.optionals config.virtualisation.libvirtd.enable [ "libvirtd" ];
     shell = pkgs.zsh;
-    openssh.authorizedKeys.keys = [ myvars.jibiSshPubKey ];
+    openssh.authorizedKeys.keys = [ myvars.sshPubkey ];
   };
 
   programs.zsh.enable = true;

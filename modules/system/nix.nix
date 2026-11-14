@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  myvars,
+  config,
+  lib,
+  ...
+}:
 
 {
   programs = {
@@ -6,7 +11,7 @@
 
     nh = {
       enable = true;
-      flake = "/home/jibi/nix-config";
+      flake = "${config.users.users.${myvars.username}.home}/nix-config";
     };
   };
 

@@ -1,4 +1,5 @@
 {
+  myvars,
   config,
   lib,
   pkgs,
@@ -36,7 +37,7 @@
         settings = rec {
           initial_session = {
             command = "mango";
-            user = "jibi";
+            user = myvars.username;
           };
 
           default_session = initial_session;

@@ -1,4 +1,5 @@
 {
+  myvars,
   config,
   lib,
   pkgs,
@@ -194,7 +195,7 @@ in
         })
       ];
 
-      home-manager.users.jibi.programs.zsh.initContent = ''
+      home-manager.users.${myvars.username}.programs.zsh.initContent = ''
         _gpu_passthrough() {
           _arguments '1:passthrough state:(on off)'
         }

@@ -26,7 +26,7 @@
       homeBin = ".bin";
     };
 
-    users.jibi = {
+    users.${myvars.username} = {
       home.stateVersion = "25.05";
       imports = [
         ./backup.nix

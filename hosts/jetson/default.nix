@@ -1,4 +1,4 @@
-{ jetpack, ... }:
+{ myvars, jetpack, ... }:
 
 {
   imports = [
@@ -39,8 +39,8 @@
     settings.PasswordAuthentication = false;
   };
 
-  users.users.jibi.extraGroups = [ "video" ];
+  users.users.${myvars.username}.extraGroups = [ "video" ];
 
-  home-manager.users.jibi.home.enableNixpkgsReleaseCheck = false;
+  home-manager.users.${myvars.username}.home.enableNixpkgsReleaseCheck = false;
   system.stateVersion = "26.05";
 }
