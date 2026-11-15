@@ -20,5 +20,8 @@
     openssh.authorizedKeys.keys = [ myvars.sshPubkey ];
   };
 
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableGlobalCompInit = false;
+  };
 }
