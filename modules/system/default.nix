@@ -11,6 +11,7 @@
     ./packages.nix
     ./overlays.nix
     ./desktop.nix
+    ./storage.nix
     ./hardware.nix
     ./fingerprint.nix
     ./nvidia.nix

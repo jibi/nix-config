@@ -6,24 +6,6 @@
 }:
 
 lib.mkIf config.modules.desktop.enable {
-  boot.supportedFilesystems = [
-    "vfat"
-    "fuse.sshfs"
-  ];
-
-  fileSystems."/media/jibi/kb" = {
-    device = "/dev/disk/by-label/RPI-RP2";
-    fsType = "vfat";
-    options = [
-      "noauto"
-      "x-systemd.automount"
-      "x-systemd.device-timeout=1"
-      "uid=1000"
-      "gid=100"
-      "umask=022"
-    ];
-  };
-
   services = {
     logind.settings.Login = {
       HandleLidSwitch = "suspend";
